@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administrar servicios - GAB-NAILS</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body class="pagina-admin">
+
+    <!-- ENCABEZADO -->
+    <header>
+
+        <img src="imagenes/logo.png"
+             alt="Logo de GAB-NAILS">
+
+        <h2>GAB-NAILS</h2>
+
+        <nav>
+            <ul>
+
+                <li>
+                    <a href="administrador.html">
+                        Administración
+                    </a>
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        Cerrar sesión
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <main class="contenido-servicios-admin">
+
+        <!-- TÍTULO -->
+        <section class="titulo-servicios-admin">
+
+            <h1>Administrar servicios</h1>
+
+            <p>
+                Agrega y administra los servicios
+                disponibles en GAB-NAILS.
+            </p>
+
+        </section>
+
+
+        <!-- FORMULARIO -->
+        <section class="caja-agregar-servicio">
+
+            <h2 id="tituloFormulario">
+                Agregar servicio
+            </h2>
+
+
+            <form id="formularioServicio">
+
+                <!-- NOMBRE -->
+                <div class="campo-servicio-admin">
+
+                    <label for="nombreServicio">
+                        Nombre
+                    </label>
+
+                    <input type="text"
+                           id="nombreServicio"
+                           placeholder="Ejemplo: Uñas acrílicas"
+                           required>
+
+                </div>
+
+
+                <!-- PRECIO -->
+                <div class="campo-servicio-admin">
+
+                    <label for="precioServicio">
+                        Precio
+                    </label>
+
+                    <input type="number"
+                           id="precioServicio"
+                           placeholder="Ejemplo: 250"
+                           min="0"
+                           required>
+
+                </div>
+
+
+                <!-- DESCRIPCIÓN -->
+                <div class="campo-servicio-admin campo-descripcion">
+
+                    <label for="descripcionServicio">
+                        Descripción
+                    </label>
+
+                    <input type="text"
+                           id="descripcionServicio"
+                           placeholder="Descripción del servicio"
+                           required>
+
+                </div>
+
+
+                <!-- BOTONES -->
+                <div class="botones-formulario-servicio">
+
+                    <button type="submit"
+                            id="botonGuardarServicio">
+
+                        + Agregar servicio
+
+                    </button>
+
+
+                    <button type="button"
+                            id="botonCancelarEdicion"
+                            class="boton-cancelar-edicion"
+                            style="display: none;">
+
+                        Cancelar edición
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- SERVICIOS REGISTRADOS -->
+        <section class="lista-servicios-admin">
+
+            <h2>Servicios registrados</h2>
+
+
+            <div class="tabla-servicios-admin"
+                 id="tablaServicios">
+
+                <!-- ENCABEZADO -->
+                <div class="fila-servicio-admin encabezado-servicio">
+
+                    <span>Servicio</span>
+
+                    <span>Descripción</span>
+
+                    <span>Precio</span>
+
+                    <span>Acciones</span>
+
+                </div>
+
+            </div>
+
+
+            <p id="sinServicios"
+               class="sin-citas"
+               style="display: none;">
+
+                No hay servicios registrados.
+
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 GAB-NAILS. Administración.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // =========================================
+        // ELEMENTOS
+        // =========================================
+
+        const formularioServicio =
+            document.getElementById(
+                "formularioServicio"
+            );
+
+
+        const tablaServicios =
+            document.getElementById(
+                "tablaServicios"
+            );
+
+
+        const sinServicios =
+            document.getElementById(
+                "sinServicios"
+            );
+
+
+        const tituloFormulario =
+            document.getElementById(
+                "tituloFormulario"
+            );
+
+
+        const botonGuardarServicio =
+            document.getElementById(
+                "botonGuardarServicio"
+            );
+
+
+        const botonCancelarEdicion =
+            document.getElementById(
+                "botonCancelarEdicion"
+            );
+
+
+        const campoNombre =
+            document.getElementById(
+                "nombreServicio"
+            );
+
+
+        const campoPrecio =
+            document.getElementById(
+                "precioServicio"
+            );
+
+
+        const campoDescripcion =
+            document.getElementById(
+                "descripcionServicio"
+            );
+
+
+        // =========================================
+        // SERVICIOS INICIALES
+        // =========================================
+
+        const serviciosIniciales = [
+
+            {
+                nombre: "Uñas acrílicas",
+                descripcion:
+                    "Uñas en diferentes tamaños, colores y formas.",
+                precio: 250
+            },
+
+            {
+                nombre: "Diseño francés",
+                descripcion:
+                    "Un diseño sencillo, bonito y elegante.",
+                precio: 300
+            },
+
+            {
+                nombre: "Uñas decoradas",
+                descripcion:
+                    "Diseños con diferentes colores y decoraciones.",
+                precio: 300
+            },
+
+            {
+                nombre: "Diseño con pedrería",
+                descripcion:
+                    "Decoraciones con piedras y detalles brillantes.",
+                precio: 350
+            },
+
+            {
+                nombre: "Gelish en pies",
+                descripcion:
+                    "Color y brillo para lucir unos pies bonitos.",
+                precio: 200
+            },
+
+            {
+                nombre: "Keratina",
+                descripcion:
+                    "Brillo, suavidad y cuidado para el cabello.",
+                precio: 500
+            }
+
+        ];
+
+
+        // =========================================
+        // RECUPERAR SERVICIOS
+        // =========================================
+
+        let servicios =
+            JSON.parse(
+                localStorage.getItem(
+                    "serviciosGabNails"
+                )
+            );
+
+
+        if (servicios === null) {
+
+            servicios = serviciosIniciales;
+
+
+            localStorage.setItem(
+                "serviciosGabNails",
+                JSON.stringify(servicios)
+            );
+
+        }
+
+
+        // =========================================
+        // CONTROL DE EDICIÓN
+        // =========================================
+
+        let indiceEditando = null;
+
+
+        // =========================================
+        // GUARDAR EN LOCALSTORAGE
+        // =========================================
+
+        function guardarServicios() {
+
+            localStorage.setItem(
+                "serviciosGabNails",
+                JSON.stringify(servicios)
+            );
+
+        }
+
+
+        // =========================================
+        // MOSTRAR SERVICIOS
+        // =========================================
+
+        function mostrarServicios() {
+
+            const filas =
+                tablaServicios.querySelectorAll(
+                    ".fila-servicio-admin:not(.encabezado-servicio)"
+                );
+
+
+            filas.forEach(function(fila) {
+
+                fila.remove();
+
+            });
+
+
+            if (servicios.length === 0) {
+
+                sinServicios.style.display =
+                    "block";
+
+            }
+
+            else {
+
+                sinServicios.style.display =
+                    "none";
+
+            }
+
+
+            servicios.forEach(
+                function(servicio, indice) {
+
+                    const fila =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    fila.classList.add(
+                        "fila-servicio-admin"
+                    );
+
+
+                    fila.innerHTML = `
+
+                        <span>
+                            ${servicio.nombre}
+                        </span>
+
+                        <span>
+                            ${servicio.descripcion}
+                        </span>
+
+                        <span>
+                            $${servicio.precio}
+                        </span>
+
+                        <div class="acciones-servicio">
+
+                            <button
+                                class="editar-servicio"
+                                data-indice="${indice}"
+                                type="button">
+
+                                Editar
+
+                            </button>
+
+
+                            <button
+                                class="eliminar-servicio"
+                                data-indice="${indice}"
+                                type="button">
+
+                                Eliminar
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    tablaServicios.appendChild(
+                        fila
+                    );
+
+                }
+            );
+
+        }
+
+
+        // =========================================
+        // AGREGAR O GUARDAR CAMBIOS
+        // =========================================
+
+        formularioServicio.addEventListener(
+            "submit",
+            function(evento) {
+
+                evento.preventDefault();
+
+
+                const nombre =
+                    campoNombre.value.trim();
+
+
+                const precio =
+                    campoPrecio.value;
+
+
+                const descripcion =
+                    campoDescripcion.value.trim();
+
+
+                if (
+                    nombre === "" ||
+                    precio === "" ||
+                    descripcion === ""
+                ) {
+
+                    alert(
+                        "Completa todos los datos."
+                    );
+
+                    return;
+
+                }
+
+
+                // =================================
+                // AGREGAR NUEVO
+                // =================================
+
+                if (indiceEditando === null) {
+
+                    const repetido =
+                        servicios.some(
+                            function(servicio) {
+
+                                return (
+                                    servicio.nombre
+                                        .toLowerCase()
+                                    ===
+                                    nombre.toLowerCase()
+                                );
+
+                            }
+                        );
+
+
+                    if (repetido) {
+
+                        alert(
+                            "Ese servicio ya está registrado."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const nuevoServicio = {
+
+                        nombre: nombre,
+
+                        descripcion:
+                            descripcion,
+
+                        precio:
+                            Number(precio)
+
+                    };
+
+
+                    servicios.push(
+                        nuevoServicio
+                    );
+
+
+                    guardarServicios();
+
+
+                    mostrarServicios();
+
+
+                    formularioServicio.reset();
+
+
+                    alert(
+                        "Servicio agregado correctamente."
+                    );
+
+                }
+
+
+                // =================================
+                // GUARDAR EDICIÓN
+                // =================================
+
+                else {
+
+                    servicios[indiceEditando] = {
+
+                        nombre:
+                            nombre,
+
+                        descripcion:
+                            descripcion,
+
+                        precio:
+                            Number(precio)
+
+                    };
+
+
+                    guardarServicios();
+
+
+                    mostrarServicios();
+
+
+                    cancelarEdicion();
+
+
+                    alert(
+                        "Servicio actualizado correctamente."
+                    );
+
+                }
+
+            }
+        );
+
+
+        // =========================================
+        // EDITAR Y ELIMINAR
+        // =========================================
+
+        tablaServicios.addEventListener(
+            "click",
+            function(evento) {
+
+
+                // =================================
+                // EDITAR
+                // =================================
+
+                if (
+                    evento.target.classList.contains(
+                        "editar-servicio"
+                    )
+                ) {
+
+                    const indice =
+                        Number(
+                            evento.target.dataset.indice
+                        );
+
+
+                    const servicio =
+                        servicios[indice];
+
+
+                    // GUARDAR ÍNDICE
+
+                    indiceEditando =
+                        indice;
+
+
+                    // PONER DATOS EN EL FORMULARIO
+
+                    campoNombre.value =
+                        servicio.nombre;
+
+
+                    campoPrecio.value =
+                        servicio.precio;
+
+
+                    campoDescripcion.value =
+                        servicio.descripcion;
+
+
+                    // CAMBIAR TÍTULO
+
+                    tituloFormulario.textContent =
+                        "Editar servicio";
+
+
+                    // CAMBIAR BOTÓN
+
+                    botonGuardarServicio.textContent =
+                        "Guardar cambios";
+
+
+                    // MOSTRAR CANCELAR
+
+                    botonCancelarEdicion.style.display =
+                        "inline-block";
+
+
+                    // SUBIR AL FORMULARIO
+
+                    document
+                        .querySelector(
+                            ".caja-agregar-servicio"
+                        )
+                        .scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+
+                    // PONER CURSOR EN NOMBRE
+
+                    campoNombre.focus();
+
+                }
+
+
+                // =================================
+                // ELIMINAR
+                // =================================
+
+                if (
+                    evento.target.classList.contains(
+                        "eliminar-servicio"
+                    )
+                ) {
+
+                    const indice =
+                        Number(
+                            evento.target.dataset.indice
+                        );
+
+
+                    const confirmar =
+                        confirm(
+                            "¿Deseas eliminar este servicio?"
+                        );
+
+
+                    if (!confirmar) {
+
+                        return;
+
+                    }
+
+
+                    servicios.splice(
+                        indice,
+                        1
+                    );
+
+
+                    guardarServicios();
+
+
+                    mostrarServicios();
+
+
+                    // SI ESTABA EDITANDO ESE SERVICIO
+
+                    if (
+                        indiceEditando === indice
+                    ) {
+
+                        cancelarEdicion();
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        // =========================================
+        // CANCELAR EDICIÓN
+        // =========================================
+
+        botonCancelarEdicion.addEventListener(
+            "click",
+            function() {
+
+                cancelarEdicion();
+
+            }
+        );
+
+
+        function cancelarEdicion() {
+
+            indiceEditando = null;
+
+
+            formularioServicio.reset();
+
+
+            tituloFormulario.textContent =
+                "Agregar servicio";
+
+
+            botonGuardarServicio.textContent =
+                "+ Agregar servicio";
+
+
+            botonCancelarEdicion.style.display =
+                "none";
+
+        }
+
+
+        // =========================================
+        // MOSTRAR AL ABRIR
+        // =========================================
+
+        mostrarServicios();
+
+    </script>
+
+</body>
+
+</html>

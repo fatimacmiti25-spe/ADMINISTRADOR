@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Servicios - GAB-NAILS</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body class="pagina-servicios">
+
+    <!-- ENCABEZADO -->
+    <header>
+
+        <img src="imagenes/logo.png"
+             alt="Logo de GAB-NAILS">
+
+        <h2>GAB-NAILS</h2>
+
+        <nav>
+            <ul>
+
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="servicios.html">Servicios</a>
+                </li>
+
+                <li>
+                    <a href="cotizacion.html">
+                        Cotizaciones y citas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contacto.html">Contacto</a>
+                </li>
+
+                <li>
+                    <a href="login.html">Administración</a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- CATÁLOGO -->
+    <main class="catalogo">
+
+        <h1>Nuestros servicios</h1>
+
+        <p class="texto-catalogo">
+            Conoce nuestros diseños y servicios disponibles.
+        </p>
+
+
+        <!-- AQUÍ SE MOSTRARÁN LOS SERVICIOS -->
+        <section class="tarjetas-servicios"
+                 id="tarjetasServicios">
+        </section>
+
+
+        <!-- MENSAJE SI NO HAY SERVICIOS -->
+        <p id="sinServiciosPublicos"
+           style="display: none; text-align: center; margin-top: 30px;">
+
+            Por el momento no hay servicios disponibles.
+
+        </p>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 GAB-NAILS. Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // =========================================
+        // ELEMENTOS
+        // =========================================
+
+        const contenedorServicios =
+            document.getElementById(
+                "tarjetasServicios"
+            );
+
+
+        const sinServicios =
+            document.getElementById(
+                "sinServiciosPublicos"
+            );
+
+
+        // =========================================
+        // OBTENER SERVICIOS
+        // =========================================
+
+        const servicios =
+            JSON.parse(
+                localStorage.getItem(
+                    "serviciosGabNails"
+                )
+            ) || [];
+
+
+        // =========================================
+        // IMÁGENES
+        // =========================================
+
+        function obtenerImagen(nombre) {
+
+            const nombreServicio =
+                nombre.toLowerCase();
+
+
+            if (
+                nombreServicio.includes(
+                    "acrílica"
+                )
+            ) {
+
+                return "imagenes/acrilicas 1.jpeg";
+
+            }
+
+
+            if (
+                nombreServicio.includes(
+                    "francés"
+                )
+            ) {
+
+                return "imagenes/francesas.jpeg";
+
+            }
+
+
+            if (
+                nombreServicio.includes(
+                    "decorada"
+                )
+            ) {
+
+                return "imagenes/decoradas.jpeg";
+
+            }
+
+
+            if (
+                nombreServicio.includes(
+                    "pedrería"
+                )
+            ) {
+
+                return "imagenes/pedreria.jpeg";
+
+            }
+
+
+            if (
+                nombreServicio.includes(
+                    "gelish"
+                )
+            ) {
+
+                return "imagenes/gelish 1.jpeg";
+
+            }
+
+
+            if (
+                nombreServicio.includes(
+                    "keratina"
+                )
+            ) {
+
+                return "imagenes/Keratina.jpeg";
+
+            }
+
+
+            // SI ES UN SERVICIO NUEVO
+            // Y NO TIENE IMAGEN
+
+            return "imagenes/logo.png";
+
+        }
+
+
+        // =========================================
+        // MOSTRAR SERVICIOS
+        // =========================================
+
+        function mostrarServicios() {
+
+            contenedorServicios.innerHTML = "";
+
+
+            if (servicios.length === 0) {
+
+                sinServicios.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            sinServicios.style.display =
+                "none";
+
+
+            servicios.forEach(
+                function(servicio) {
+
+                    const tarjeta =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    tarjeta.classList.add(
+                        "tarjeta-servicio"
+                    );
+
+
+                    const imagen =
+                        obtenerImagen(
+                            servicio.nombre
+                        );
+
+
+                    tarjeta.innerHTML = `
+
+                        <img
+                            src="${imagen}"
+                            alt="${servicio.nombre}">
+
+                        <h3>
+                            ${servicio.nombre}
+                        </h3>
+
+                        <p>
+                            ${servicio.descripcion}
+                        </p>
+
+                        <strong>
+                            $${servicio.precio}
+                        </strong>
+
+                    `;
+
+
+                    contenedorServicios.appendChild(
+                        tarjeta
+                    );
+
+                }
+            );
+
+        }
+
+
+        // =========================================
+        // MOSTRAR AL ABRIR
+        // =========================================
+
+        mostrarServicios();
+
+    </script>
+
+</body>
+
+</html>

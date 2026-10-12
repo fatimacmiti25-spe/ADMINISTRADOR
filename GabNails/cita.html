@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agendar cita - GAB-NAILS</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+    <style>
+        .resumen-cotizacion {
+            background: #fff8f6;
+            border: 1px solid #e8c9c3;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 22px 0;
+        }
+
+        .resumen-cotizacion h3 {
+            color: #743646;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .resumen-cotizacion p {
+            margin: 10px 0;
+        }
+
+        .foto-cotizada {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin: 15px auto;
+        }
+
+        .precio-cotizado {
+            background: #f4e2de;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .precio-cotizado h2 {
+            color: #743646;
+            font-size: 30px;
+            margin: 8px 0;
+        }
+
+        .aviso-cita {
+            background: #fff4f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .aviso-cita a {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 22px;
+            border-radius: 25px;
+            background: #743646;
+            color: white;
+            text-decoration: none;
+        }
+
+        #servicio[readonly] {
+            background: #faf2ef;
+        }
+
+        #botonAgendar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body class="pagina-cita">
+
+    <!-- ENCABEZADO -->
+    <header>
+
+        <img src="imagenes/logo.png" alt="Logo de GAB-NAILS">
+
+        <h2>GAB-NAILS</h2>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+
+                <li>
+                    <a href="cotizacion.html">
+                        Cotizaciones y citas
+                    </a>
+                </li>
+
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Administración</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="contenido-cita">
+
+        <div class="formulario-cita">
+
+            <h1>Agenda tu cita</h1>
+
+            <p class="texto-cita">
+                Revisa tu diseño cotizado, escribe tu nombre
+                y selecciona un horario disponible.
+            </p>
+
+            <!-- MENSAJE SI NO HAY COTIZACIÓN -->
+            <div id="avisoCotizacion"
+                 class="aviso-cita"
+                 style="display: none;">
+
+                <p id="textoAviso"></p>
+
+                <a href="consultar-cotizacion.html">
+                    Consultar cotización
+                </a>
+
+            </div>
+
+            <!-- FORMULARIO -->
+            <form id="formularioCita">
+
+                <!-- NOMBRE -->
+                <label for="nombre">
+                    Nombre completo
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Escribe tu nombre"
+                    required
+                >
+
+                <!-- TELÉFONO -->
+                <label for="telefono">
+                    Teléfono
+                </label>
+
+                <input
+                    type="tel"
+                    id="telefono"
+                    placeholder="Ejemplo: 4411004275"
+                    maxlength="10"
+                    minlength="10"
+                    pattern="[0-9]{10}"
+                    inputmode="numeric"
+                    required
+                >
+
+                <!-- SERVICIO -->
+                <label for="servicio">
+                    Servicio
+                </label>
+
+                <input
+                    type="text"
+                    id="servicio"
+                    placeholder="Servicio cotizado"
+                    readonly
+                    required
+                >
+
+                <!-- HORARIO -->
+                <label for="horario">
+                    Horario disponible
+                </label>
+
+                <select id="horario" required>
+
+                    <option value="">
+                        Selecciona un horario
+                    </option>
+
+                </select>
+
+                <p id="mensajeHorarios"
+                   class="mensaje-horarios"></p>
+
+                <!-- DISEÑO YA COTIZADO -->
+                <div id="resumenCotizacion"
+                     class="resumen-cotizacion"
+                     style="display: none;">
+
+                    <h3>Tu diseño cotizado</h3>
+
+                    <p>
+                        Servicio:
+                        <span id="servicioCotizado"></span>
+                    </p>
+
+                    <p>
+                        Largo de uñas:
+                        <span id="largoCotizado"></span>
+                    </p>
+
+                    <p>Fotografía del diseño:</p>
+
+                    <img
+                        id="imagenCotizada"
+                        class="foto-cotizada"
+                        alt="Diseño enviado para cotización"
+                        style="display: none;"
+                    >
+
+                    <p>
+                        Detalles:
+                        <span id="detallesCotizados"></span>
+                    </p>
+
+                    <div class="precio-cotizado">
+
+                        <p>Precio cotizado</p>
+
+                        <h2 id="precioCotizado">
+                            $0.00
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <!-- COMENTARIOS -->
+                <label for="comentarios">
+                    Comentarios adicionales
+                </label>
+
+                <textarea
+                    id="comentarios"
+                    placeholder="Escribe alguna indicación adicional para tu cita..."
+                ></textarea>
+
+                <!-- BOTÓN -->
+                <button
+                    type="submit"
+                    id="botonAgendar"
+                    disabled
+                >
+                    Agendar cita
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 GAB-NAILS. Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <script>
+
+        // =========================================
+        // ELEMENTOS
+        // =========================================
+
+        const formulario =
+            document.getElementById("formularioCita");
+
+        const telefonoInput =
+            document.getElementById("telefono");
+
+        const servicioInput =
+            document.getElementById("servicio");
+
+        const selectorHorario =
+            document.getElementById("horario");
+
+        const mensajeHorarios =
+            document.getElementById("mensajeHorarios");
+
+        const botonAgendar =
+            document.getElementById("botonAgendar");
+
+        const resumenCotizacion =
+            document.getElementById("resumenCotizacion");
+
+        const avisoCotizacion =
+            document.getElementById("avisoCotizacion");
+
+        const textoAviso =
+            document.getElementById("textoAviso");
+
+        let cotizacionSeleccionada = null;
+
+        // =========================================
+        // LEER DATOS DEL NAVEGADOR
+        // =========================================
+
+        function leerDatos(clave) {
+
+            try {
+
+                const datos = JSON.parse(
+                    localStorage.getItem(clave)
+                );
+
+                return Array.isArray(datos) ? datos : [];
+
+            } catch (error) {
+
+                return [];
+
+            }
+        }
+
+        // =========================================
+        // TELÉFONO: SOLO 10 DÍGITOS
+        // =========================================
+
+        telefonoInput.addEventListener("input", function() {
+
+            this.value = this.value
+                .replace(/\D/g, "")
+                .slice(0, 10);
+
+        });
+
+        // =========================================
+        // MOSTRAR AVISO
+        // =========================================
+
+        function mostrarAviso(mensaje) {
+
+            textoAviso.textContent = mensaje;
+
+            avisoCotizacion.style.display = "block";
+
+            formulario.style.display = "none";
+
+        }
+
+        // =========================================
+        // CARGAR COTIZACIÓN
+        // =========================================
+
+        function cargarCotizacion() {
+
+            const parametros =
+                new URLSearchParams(window.location.search);
+
+            const idCotizacion =
+                parametros.get("cotizacion");
+
+            if (!idCotizacion) {
+
+                mostrarAviso(
+                    "Primero consulta tu cotización y presiona el botón Agendar cita."
+                );
+
+                return;
+
+            }
+
+            const cotizaciones =
+                leerDatos("cotizacionesGabNails");
+
+            const cotizacion =
+                cotizaciones.find(function(item) {
+
+                    return String(item.id) ===
+                        String(idCotizacion);
+
+                });
+
+            if (!cotizacion) {
+
+                mostrarAviso(
+                    "No se encontró la cotización seleccionada."
+                );
+
+                return;
+
+            }
+
+            const precio =
+                Number(cotizacion.precioCotizado);
+
+            if (
+                cotizacion.precioCotizado === null ||
+                cotizacion.precioCotizado === undefined ||
+                cotizacion.precioCotizado === "" ||
+                !Number.isFinite(precio) ||
+                precio <= 0
+            ) {
+
+                mostrarAviso(
+                    "Tu cotización todavía está pendiente de revisión."
+                );
+
+                return;
+
+            }
+
+            // EVITAR DOS CITAS ACTIVAS
+            // CON LA MISMA COTIZACIÓN
+
+            const citas =
+                leerDatos("citasGabNails");
+
+            const yaExiste = citas.some(function(cita) {
+
+                return (
+                    String(cita.cotizacionId) ===
+                    String(cotizacion.id)
+                ) && cita.estado !== "Cancelada";
+
+            });
+
+            if (yaExiste) {
+
+                mostrarAviso(
+                    "Esta cotización ya tiene una cita registrada. Puedes consultar su estado con tu teléfono."
+                );
+
+                return;
+
+            }
+
+            cotizacionSeleccionada = cotizacion;
+
+            telefonoInput.value =
+                String(cotizacion.telefono || "")
+                    .replace(/\D/g, "")
+                    .slice(0, 10);
+
+            servicioInput.value =
+                cotizacion.servicio || "";
+
+            document.getElementById(
+                "servicioCotizado"
+            ).textContent = cotizacion.servicio || "";
+
+            document.getElementById(
+                "largoCotizado"
+            ).textContent =
+                "Número " + (cotizacion.tamano || "");
+
+            document.getElementById(
+                "detallesCotizados"
+            ).textContent =
+                cotizacion.detalles ||
+                "Sin detalles adicionales.";
+
+            document.getElementById(
+                "precioCotizado"
+            ).textContent =
+                "$" + precio.toFixed(2);
+
+            // MOSTRAR FOTO GUARDADA EN COTIZACIÓN
+
+            const imagen =
+                document.getElementById("imagenCotizada");
+
+            if (cotizacion.imagenDiseno) {
+
+                imagen.src = cotizacion.imagenDiseno;
+
+                imagen.style.display = "block";
+
+            } else {
+
+                imagen.style.display = "none";
+
+            }
+
+            resumenCotizacion.style.display = "block";
+
+            cargarHorarios();
+
+        }
+
+        // =========================================
+        // CARGAR HORARIOS DISPONIBLES
+        // =========================================
+
+        function cargarHorarios() {
+
+            const horarios =
+                leerDatos("horariosGabNails");
+
+            selectorHorario.innerHTML =
+                '<option value="">Selecciona un horario</option>';
+
+            const disponibles =
+                horarios.filter(function(horario) {
+
+                    return horario.estado === "Disponible";
+
+                });
+
+            if (disponibles.length === 0) {
+
+                mensajeHorarios.textContent =
+                    "Por el momento no hay horarios disponibles.";
+
+                selectorHorario.disabled = true;
+
+                botonAgendar.disabled = true;
+
+                return;
+
+            }
+
+            disponibles.forEach(function(horario) {
+
+                const posicion =
+                    horarios.indexOf(horario);
+
+                const opcion =
+                    document.createElement("option");
+
+                opcion.value = posicion;
+
+                opcion.textContent =
+                    horario.fechaMostrar +
+                    " - " +
+                    horario.horaMostrar;
+
+                selectorHorario.appendChild(opcion);
+
+            });
+
+            mensajeHorarios.textContent = "";
+
+            selectorHorario.disabled = false;
+
+            botonAgendar.disabled = false;
+
+        }
+
+        // =========================================
+        // GUARDAR CITA
+        // =========================================
+
+        formulario.addEventListener("submit", function(evento) {
+
+            evento.preventDefault();
+
+            if (!cotizacionSeleccionada) {
+
+                alert(
+                    "Primero necesitas una cotización con precio."
+                );
+
+                return;
+
+            }
+
+            const nombre =
+                document.getElementById("nombre")
+                    .value.trim();
+
+            const telefono =
+                telefonoInput.value.trim();
+
+            const posicion =
+                selectorHorario.value;
+
+            const comentarios =
+                document.getElementById("comentarios")
+                    .value.trim();
+
+            // VALIDAR TELÉFONO
+
+            if (!/^\d{10}$/.test(telefono)) {
+
+                alert(
+                    "El teléfono debe tener exactamente 10 dígitos."
+                );
+
+                return;
+
+            }
+
+            const telefonoCotizacion =
+                String(cotizacionSeleccionada.telefono || "")
+                    .replace(/\D/g, "");
+
+            if (telefono !== telefonoCotizacion) {
+
+                alert(
+                    "Debes utilizar el mismo teléfono de tu cotización."
+                );
+
+                return;
+
+            }
+
+            if (!nombre || posicion === "") {
+
+                alert(
+                    "Completa tu nombre y selecciona un horario."
+                );
+
+                return;
+
+            }
+
+            // VOLVER A LEER HORARIOS
+
+            const horarios =
+                leerDatos("horariosGabNails");
+
+            const horario =
+                horarios[Number(posicion)];
+
+            if (
+                !horario ||
+                horario.estado !== "Disponible"
+            ) {
+
+                alert(
+                    "Ese horario ya no está disponible."
+                );
+
+                cargarHorarios();
+
+                return;
+
+            }
+
+            // VERIFICAR QUE NO HAYA OTRA CITA
+            // PARA ESTA COTIZACIÓN
+
+            const citas =
+                leerDatos("citasGabNails");
+
+            const existeCita = citas.some(function(cita) {
+
+                return (
+                    String(cita.cotizacionId) ===
+                    String(cotizacionSeleccionada.id)
+                ) && cita.estado !== "Cancelada";
+
+            });
+
+            if (existeCita) {
+
+                alert(
+                    "Esta cotización ya tiene una cita registrada."
+                );
+
+                return;
+
+            }
+
+            // CREAR CITA
+            // NO SE DUPLICA LA FOTO PARA AHORRAR ESPACIO
+
+            const nuevaCita = {
+
+                id: Date.now(),
+
+                cotizacionId:
+                    cotizacionSeleccionada.id,
+
+                nombre: nombre,
+
+                telefono: telefono,
+
+                servicio:
+                    cotizacionSeleccionada.servicio,
+
+                tamano:
+                    cotizacionSeleccionada.tamano,
+
+                fecha:
+                    horario.fecha,
+
+                fechaMostrar:
+                    horario.fechaMostrar,
+
+                hora:
+                    horario.hora,
+
+                horaMostrar:
+                    horario.horaMostrar,
+
+                imagenDiseno: "",
+
+                comentarios: comentarios,
+
+                precioCotizado:
+                    Number(
+                        cotizacionSeleccionada.precioCotizado
+                    ),
+
+                estado: "Pendiente"
+
+            };
+
+            citas.push(nuevaCita);
+
+            // GUARDAR CITA Y OCUPAR HORARIO
+
+            const respaldoCitas =
+                localStorage.getItem("citasGabNails");
+
+            const respaldoHorarios =
+                localStorage.getItem("horariosGabNails");
+
+            try {
+
+                localStorage.setItem(
+                    "citasGabNails",
+                    JSON.stringify(citas)
+                );
+
+                horarios[Number(posicion)].estado =
+                    "Ocupado";
+
+                localStorage.setItem(
+                    "horariosGabNails",
+                    JSON.stringify(horarios)
+                );
+
+            } catch (error) {
+
+                // RESTAURAR DATOS ANTERIORES
+
+                try {
+
+                    if (respaldoCitas === null) {
+
+                        localStorage.removeItem(
+                            "citasGabNails"
+                        );
+
+                    } else {
+
+                        localStorage.setItem(
+                            "citasGabNails",
+                            respaldoCitas
+                        );
+
+                    }
+
+                    if (respaldoHorarios === null) {
+
+                        localStorage.removeItem(
+                            "horariosGabNails"
+                        );
+
+                    } else {
+
+                        localStorage.setItem(
+                            "horariosGabNails",
+                            respaldoHorarios
+                        );
+
+                    }
+
+                } catch (errorRestauracion) {
+
+                    console.error(errorRestauracion);
+
+                }
+
+                alert(
+                    "No se pudo guardar la cita. Intenta nuevamente."
+                );
+
+                return;
+
+            }
+
+            alert(
+                "Tu cita fue registrada correctamente. Puedes consultar su estado con tu número de teléfono."
+            );
+
+            window.location.href =
+                "consultar-cita.html";
+
+        });
+
+        // =========================================
+        // INICIAR
+        // =========================================
+
+        cargarCotizacion();
+
+    </script>
+
+</body>
+
+</html>

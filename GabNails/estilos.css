@@ -1,0 +1,3508 @@
+/* =========================================
+   GAB-NAILS
+   HOJA DE ESTILOS
+========================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+/* QUITAR ESPACIOS PREDETERMINADOS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   PÁGINA GENERAL
+========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFF9F7;
+    color: #3E3034;
+}
+
+
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+header {
+    height: 85px;
+    background-color: #FFF9F7;
+
+    display: flex;
+    align-items: center;
+
+    padding: 7px 7%;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* LOGO */
+
+header img {
+    width: 68px;
+    height: 68px;
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 2px solid #E4B8B5;
+}
+
+
+/* NOMBRE */
+
+header h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 26px;
+    font-style: italic;
+
+    color: #713E4A;
+
+    margin-left: 15px;
+}
+
+
+/* =========================================
+   MENÚ
+========================================= */
+
+nav {
+    margin-left: auto;
+}
+
+
+nav ul {
+    list-style: none;
+
+    display: flex;
+
+    gap: 30px;
+}
+
+
+nav ul li {
+    display: inline;
+}
+
+
+nav ul li a {
+    text-decoration: none;
+
+    color: #713E4A;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    padding-bottom: 5px;
+
+    transition: 0.3s;
+}
+
+
+nav ul li a:hover {
+    color: #C7848F;
+
+    border-bottom: 2px solid #C7848F;
+}
+
+
+/* =========================================
+   SECCIÓN PRINCIPAL
+========================================= */
+
+body > section:first-of-type {
+    height: 250px;
+
+    background-color: #F3E3DE;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-left: 9%;
+}
+
+
+/* TÍTULO PRINCIPAL */
+
+body > section:first-of-type h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 47px;
+    font-style: italic;
+
+    color: #713E4A;
+
+    margin-bottom: 10px;
+}
+
+
+/* DESCRIPCIÓN */
+
+body > section:first-of-type p {
+    width: 40%;
+
+    font-size: 17px;
+
+    line-height: 1.5;
+
+    color: #57464A;
+}
+
+
+/* IMAGEN PRINCIPAL */
+
+body > section:first-of-type img {
+    position: absolute;
+
+    right: 9%;
+    top: 20px;
+
+    width: 330px;
+    height: 210px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   QUÉ OFRECEMOS
+========================================= */
+
+body > section:nth-of-type(2) {
+    background-color: #FFF9F7;
+
+    text-align: center;
+
+    padding: 22px 7%;
+}
+
+
+/* TÍTULO */
+
+body > section:nth-of-type(2) > h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 29px;
+    font-style: italic;
+
+    color: #713E4A;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   TARJETAS
+========================================= */
+
+body > section:nth-of-type(2) div {
+    width: 29%;
+
+    display: inline-block;
+
+    vertical-align: top;
+
+    margin: 0 1%;
+
+    background-color: #FFFFFF;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(113, 62, 74, 0.15);
+
+    transition: 0.3s;
+}
+
+
+/* EFECTO AL PASAR EL MOUSE */
+
+body > section:nth-of-type(2) div:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 20px rgba(113, 62, 74, 0.25);
+}
+
+
+/* =========================================
+   IMÁGENES DE SERVICIOS
+========================================= */
+
+body > section:nth-of-type(2) div img {
+    width: 100%;
+    height: 250px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0;
+
+    border-radius: 0;
+}
+
+
+/* =========================================
+   NOMBRE DE SERVICIOS
+========================================= */
+
+body > section:nth-of-type(2) h3 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 19px;
+
+    color: #9B5968;
+
+    margin: 9px 5px 5px;
+}
+
+
+/* =========================================
+   DESCRIPCIÓN DE SERVICIOS
+========================================= */
+
+body > section:nth-of-type(2) div p {
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    color: #57464A;
+
+    padding: 0 15px 12px;
+}
+
+
+/* =========================================
+   CONTACTO
+========================================= */
+
+body > section:last-of-type {
+    background-color: #EAD2CC;
+
+    text-align: center;
+
+    padding: 15px 20px;
+}
+
+
+/* TÍTULO CONTACTO */
+
+body > section:last-of-type h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 25px;
+    font-style: italic;
+
+    color: #713E4A;
+
+    margin-bottom: 9px;
+}
+
+
+/* INFORMACIÓN DE CONTACTO */
+
+body > section:last-of-type p {
+    display: inline-block;
+
+    color: #49373C;
+
+    font-size: 13px;
+
+    margin: 4px 12px;
+}
+
+
+/* =========================================
+   PIE DE PÁGINA
+========================================= */
+
+footer {
+    background-color: #5D3540;
+
+    color: #FFF9F7;
+
+    text-align: center;
+
+    padding: 11px 20px;
+
+    font-size: 12px;
+}
+
+
+footer p {
+    display: inline-block;
+
+    margin-right: 25px;
+}
+
+
+footer a {
+    color: #F4D9D5;
+
+    text-decoration: none;
+}
+
+
+footer a:hover {
+    color: #FFFFFF;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   DISEÑO PARA CELULAR
+========================================= */
+
+@media (max-width: 800px) {
+
+    /* ENCABEZADO */
+
+    header {
+        height: auto;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        padding: 10px;
+    }
+
+
+    header img {
+        width: 60px;
+        height: 60px;
+    }
+
+
+    header h2 {
+        font-size: 22px;
+    }
+
+
+    /* MENÚ */
+
+    nav {
+        width: 100%;
+
+        margin: 10px 0 0;
+    }
+
+
+    nav ul {
+        justify-content: center;
+
+        gap: 15px;
+    }
+
+
+    nav ul li a {
+        font-size: 13px;
+    }
+
+
+    /* PORTADA */
+
+    body > section:first-of-type {
+        height: auto;
+
+        text-align: center;
+
+        padding: 25px 20px;
+    }
+
+
+    body > section:first-of-type h1 {
+        font-size: 36px;
+    }
+
+
+    body > section:first-of-type p {
+        width: 100%;
+
+        margin-bottom: 15px;
+    }
+
+
+    body > section:first-of-type img {
+        position: static;
+
+        width: 85%;
+        height: 180px;
+
+        margin: auto;
+    }
+
+
+    /* SERVICIOS */
+
+    body > section:nth-of-type(2) {
+        padding: 20px;
+    }
+
+
+    body > section:nth-of-type(2) div {
+        width: 90%;
+
+        margin: 8px 0;
+    }
+
+
+    body > section:nth-of-type(2) div img {
+        height: 160px;
+    }
+
+
+    /* CONTACTO */
+
+    body > section:last-of-type p {
+        display: block;
+
+        margin: 7px;
+    }
+
+
+    /* FOOTER */
+
+    footer p {
+        display: block;
+
+        margin: 0 0 7px;
+    }
+}
+/* IMAGEN PRINCIPAL */
+
+body > section:first-of-type img {
+    position: absolute;
+
+    right: 7%;
+    top: 15px;
+
+    width: 420px;
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+/* ESPACIO PARA QUE FUNCIONE LA NAVEGACIÓN DEL MENÚ */
+
+#inicio {
+    min-height: 300px;
+}
+
+#servicios {
+    min-height: 400px;
+}
+
+#contacto {
+    min-height: 180px;
+}
+
+/* Evita que el encabezado tape el título al navegar */
+section {
+    scroll-margin-top: 90px;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+#inicio {
+    min-height: 300px;
+}
+
+#servicios {
+    min-height: 420px;
+}
+
+#contacto {
+    min-height: 180px;
+}
+
+#inicio,
+#servicios,
+#contacto {
+    scroll-margin-top: 90px;
+}
+/* =========================================
+   PÁGINA DE SERVICIOS
+========================================= */
+
+.pagina-servicios {
+    background-color: #fff9f7;
+}
+
+
+/* CONTENIDO DEL CATÁLOGO */
+
+.catalogo {
+    padding: 30px 7% 40px;
+    text-align: center;
+}
+
+
+/* TÍTULO */
+
+.catalogo h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 35px;
+    font-style: italic;
+    color: #713e4a;
+    margin-bottom: 5px;
+}
+
+
+/* TEXTO DEBAJO DEL TÍTULO */
+
+.texto-catalogo {
+    color: #6b565b;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+
+/* CONTENEDOR DE TARJETAS */
+
+.tarjetas-servicios {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+    max-width: 1250px;
+
+    margin: auto;
+}
+
+
+/* CADA TARJETA */
+
+.tarjeta-servicio {
+    background-color: white;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(113, 62, 74, 0.15);
+
+    padding-bottom: 22px;
+
+    min-height: 390px;
+
+    transition: 0.3s;
+}
+
+
+/* FOTOS MÁS GRANDES */
+
+.tarjeta-servicio img {
+    width: 100%;
+
+    height: 230px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* NOMBRE DEL SERVICIO */
+
+.tarjeta-servicio h3 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #8d4d5c;
+
+    font-size: 22px;
+
+    margin: 15px 10px 8px;
+}
+
+
+/* DESCRIPCIÓN */
+
+.tarjeta-servicio p {
+    color: #5c4a4e;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    padding: 0 18px;
+
+    min-height: 45px;
+}
+
+
+/* BOTÓN DE PRECIO */
+
+.tarjeta-servicio strong {
+    display: inline-block;
+
+    margin-top: 14px;
+
+    color: #713e4a;
+
+    background-color: #f3e3de;
+
+    padding: 9px 20px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+}
+/* =========================================
+   PÁGINA DE INICIO GAB-NAILS
+========================================= */
+
+.pagina-inicio {
+    background-color: #fff9f7;
+}
+
+
+/* PORTADA PRINCIPAL */
+
+.portada-inicio {
+    min-height: 330px;
+
+    background-color: #f0d8d2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 35px 9%;
+}
+
+
+/* TEXTO PRINCIPAL */
+
+.texto-inicio {
+    width: 45%;
+}
+
+
+.texto-inicio h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 48px;
+
+    font-style: italic;
+
+    color: #713e4a;
+
+    margin-bottom: 5px;
+}
+
+
+.texto-inicio h3 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #9b5968;
+
+    font-size: 22px;
+
+    margin-bottom: 12px;
+}
+
+
+.texto-inicio p {
+    color: #57464a;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    margin-bottom: 22px;
+}
+
+
+/* BOTÓN */
+
+.boton-inicio {
+    display: inline-block;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 22px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.boton-inicio:hover {
+    background-color: #9b5968;
+}
+
+
+/* IMAGEN PRINCIPAL */
+
+.imagen-inicio {
+    width: 45%;
+}
+
+
+.imagen-inicio img {
+    width: 100%;
+
+    height: 270px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   QUIÉNES SOMOS
+========================================= */
+
+.quienes-somos {
+    text-align: center;
+
+    padding: 30px 15%;
+
+    background-color: #fff9f7;
+}
+
+
+.quienes-somos h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 30px;
+
+    font-style: italic;
+
+    color: #713e4a;
+
+    margin-bottom: 12px;
+}
+
+
+.quienes-somos p {
+    color: #57464a;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================
+   INFORMACIÓN
+========================================= */
+
+.informacion-inicio {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    padding: 10px 7% 35px;
+
+    background-color: #fff9f7;
+}
+
+
+.bloque-inicio {
+    width: 30%;
+
+    background-color: white;
+
+    text-align: center;
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 15px rgba(113, 62, 74, 0.15);
+}
+
+
+.bloque-inicio h3 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #9b5968;
+
+    font-size: 19px;
+
+    margin-bottom: 10px;
+}
+
+
+.bloque-inicio p {
+    color: #57464a;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 800px) {
+
+    .portada-inicio {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 30px 20px;
+    }
+
+
+    .texto-inicio {
+        width: 100%;
+
+        margin-bottom: 25px;
+    }
+
+
+    .texto-inicio h1 {
+        font-size: 38px;
+    }
+
+
+    .imagen-inicio {
+        width: 100%;
+    }
+
+
+    .imagen-inicio img {
+        height: 230px;
+    }
+
+
+    .quienes-somos {
+        padding: 30px 25px;
+    }
+
+
+    .informacion-inicio {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+
+    .bloque-inicio {
+        width: 90%;
+    }
+
+}
+/* =========================================
+   PÁGINA DE CONTACTO
+========================================= */
+
+.pagina-contacto {
+    background-color: #fff9f7;
+}
+
+
+/* CONTENIDO GENERAL */
+
+.contenido-contacto {
+    text-align: center;
+    padding: 35px 7% 45px;
+}
+
+
+/* TÍTULO PRINCIPAL */
+
+.contenido-contacto > h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    font-style: italic;
+    color: #713e4a;
+    margin-bottom: 7px;
+}
+
+
+/* TEXTO DEBAJO DEL TÍTULO */
+
+.subtitulo-contacto {
+    color: #6b565b;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   TARJETAS DE CONTACTO
+========================================= */
+
+.tarjetas-contacto {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+
+    max-width: 1050px;
+    margin: auto;
+}
+
+
+/* CADA TARJETA */
+
+.tarjeta-contacto {
+    background-color: #ffffff;
+
+    padding: 28px 25px;
+
+    min-height: 180px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 5px 16px rgba(113, 62, 74, 0.15);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition: 0.3s;
+}
+
+
+/* EFECTO AL PASAR EL MOUSE */
+
+.tarjeta-contacto:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 22px rgba(113, 62, 74, 0.25);
+}
+
+
+/* TÍTULOS DE LAS TARJETAS */
+
+.tarjeta-contacto h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #9b5968;
+
+    font-size: 23px;
+
+    margin-bottom: 12px;
+}
+
+
+/* INFORMACIÓN */
+
+.tarjeta-contacto p {
+    color: #57464a;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 6px;
+}
+
+
+/* =========================================
+   BOTÓN LLAMAR
+========================================= */
+
+.boton-contacto {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 9px 22px;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 25px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.boton-contacto:hover {
+    background-color: #9b5968;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   SECCIÓN AGENDAR CITA
+========================================= */
+
+.mensaje-contacto {
+    max-width: 1050px;
+
+    margin: 30px auto 0;
+
+    padding: 28px;
+
+    background-color: #f0d8d2;
+
+    border-radius: 18px;
+
+    box-shadow: 0 4px 15px rgba(113, 62, 74, 0.12);
+}
+
+
+/* TÍTULO AGENDAR */
+
+.mensaje-contacto h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 26px;
+
+    font-style: italic;
+
+    color: #713e4a;
+
+    margin-bottom: 10px;
+}
+
+
+/* TEXTO */
+
+.mensaje-contacto p {
+    color: #57464a;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    margin: 6px 0;
+}
+
+
+/* =========================================
+   BOTÓN AGENDAR
+========================================= */
+
+.boton-cita {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 25px;
+
+    border-radius: 25px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.boton-cita:hover {
+    background-color: #9b5968;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 800px) {
+
+    .contenido-contacto {
+        padding: 25px 20px;
+    }
+
+
+    .contenido-contacto > h1 {
+        font-size: 32px;
+    }
+
+
+    .tarjetas-contacto {
+        grid-template-columns: 1fr;
+    }
+
+
+    .tarjeta-contacto {
+        min-height: 160px;
+    }
+
+
+    .mensaje-contacto {
+        margin-top: 20px;
+    }
+
+}
+/* =========================================
+   PÁGINA AGENDAR CITA
+========================================= */
+
+.pagina-cita {
+    background-color: #fff9f7;
+}
+
+
+/* CONTENIDO */
+
+.contenido-cita {
+    min-height: calc(100vh - 85px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 35px 20px;
+
+    background-color: #f5e5e0;
+}
+
+
+/* CUADRO DEL FORMULARIO */
+
+.formulario-cita {
+    width: 100%;
+
+    max-width: 600px;
+
+    background-color: white;
+
+    padding: 32px 40px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 7px 22px rgba(113, 62, 74, 0.18);
+}
+
+
+/* TÍTULO */
+
+.formulario-cita h1 {
+    text-align: center;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 34px;
+
+    font-style: italic;
+
+    color: #713e4a;
+
+    margin-bottom: 7px;
+}
+
+
+/* TEXTO */
+
+.texto-cita {
+    text-align: center;
+
+    color: #6b565b;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+
+/* ETIQUETAS */
+
+.formulario-cita label {
+    display: block;
+
+    color: #713e4a;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    margin-top: 14px;
+
+    margin-bottom: 6px;
+}
+
+
+/* INPUTS, SELECT Y TEXTAREA */
+
+.formulario-cita input,
+.formulario-cita select,
+.formulario-cita textarea {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    border: 1px solid #d8b9b4;
+
+    border-radius: 9px;
+
+    background-color: #fffdfc;
+
+    color: #4d3d41;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+/* CUANDO SE SELECCIONA UN CAMPO */
+
+.formulario-cita input:focus,
+.formulario-cita select:focus,
+.formulario-cita textarea:focus {
+    border-color: #9b5968;
+
+    box-shadow: 0 0 4px rgba(155, 89, 104, 0.3);
+}
+
+
+/* COMENTARIOS */
+
+.formulario-cita textarea {
+    height: 85px;
+
+    resize: none;
+}
+
+
+/* BOTÓN */
+
+.formulario-cita button {
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.formulario-cita button:hover {
+    background-color: #9b5968;
+
+    transform: scale(1.02);
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .formulario-cita {
+        padding: 25px 20px;
+    }
+
+    .formulario-cita h1 {
+        font-size: 29px;
+    }
+
+}
+/* =========================================
+   INICIO DE SESIÓN - ADMINISTRACIÓN
+========================================= */
+
+.pagina-login {
+    background-color: #fff9f7;
+}
+
+.contenido-login {
+    min-height: calc(100vh - 85px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+
+    background-color: #f3dfda;
+}
+
+.caja-login {
+    width: 100%;
+    max-width: 430px;
+
+    background-color: white;
+
+    padding: 35px 40px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 7px 22px rgba(113, 62, 74, 0.18);
+}
+
+.logo-login {
+    width: 90px;
+    height: 90px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid #e4b8b5;
+
+    margin-bottom: 12px;
+}
+
+.caja-login h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 31px;
+
+    font-style: italic;
+
+    color: #713e4a;
+
+    margin-bottom: 7px;
+}
+
+.caja-login > p {
+    color: #6b565b;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+.caja-login form {
+    text-align: left;
+}
+
+.caja-login label {
+    display: block;
+
+    color: #713e4a;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    margin-top: 14px;
+
+    margin-bottom: 6px;
+}
+
+.caja-login input {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    border: 1px solid #d8b9b4;
+
+    border-radius: 9px;
+
+    background-color: #fffdfc;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.caja-login input:focus {
+    border-color: #9b5968;
+
+    box-shadow: 0 0 4px rgba(155, 89, 104, 0.3);
+}
+
+.caja-login button {
+    width: 100%;
+
+    margin-top: 23px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.caja-login button:hover {
+    background-color: #9b5968;
+
+    transform: scale(1.02);
+}
+
+.volver-inicio {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    color: #8d4d5c;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.volver-inicio:hover {
+    text-decoration: underline;
+}
+/* =========================================
+   PANEL DE ADMINISTRACIÓN
+========================================= */
+
+.pagina-admin {
+    background-color: #fff9f7;
+}
+
+
+/* CONTENIDO */
+
+.contenido-admin {
+    min-height: calc(100vh - 130px);
+
+    padding: 45px 7%;
+
+    background-color: #f5e5e0;
+}
+
+
+/* BIENVENIDA */
+
+.bienvenida-admin {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.bienvenida-admin h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 38px;
+
+    font-style: italic;
+
+    color: #713e4a;
+
+    margin-bottom: 8px;
+}
+
+.bienvenida-admin p {
+    color: #6b565b;
+
+    font-size: 15px;
+}
+
+
+/* TARJETAS */
+
+.opciones-admin {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* CADA OPCIÓN */
+
+.opcion-admin {
+    background-color: white;
+
+    padding: 35px 25px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    box-shadow: 0 5px 18px rgba(113, 62, 74, 0.15);
+
+    transition: 0.3s;
+}
+
+.opcion-admin:hover {
+    transform: translateY(-7px);
+
+    box-shadow: 0 9px 25px rgba(113, 62, 74, 0.25);
+}
+
+
+/* ICONO */
+
+.icono-admin {
+    width: 65px;
+
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #f0d8d2;
+
+    color: #713e4a;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 27px;
+
+    font-weight: bold;
+}
+
+
+/* TÍTULOS */
+
+.opcion-admin h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #713e4a;
+
+    font-size: 24px;
+
+    margin-bottom: 12px;
+}
+
+
+/* DESCRIPCIÓN */
+
+.opcion-admin p {
+    color: #655257;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    min-height: 68px;
+
+    margin-bottom: 18px;
+}
+
+
+/* TEXTO INFERIOR */
+
+.opcion-admin span {
+    display: inline-block;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    padding: 9px 20px;
+
+    border-radius: 22px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    .opciones-admin {
+        grid-template-columns: 1fr;
+    }
+
+    .contenido-admin {
+        padding: 30px 20px;
+    }
+
+}
+/* =========================================
+   ADMINISTRAR HORARIOS
+========================================= */
+
+.contenido-horarios {
+    min-height: calc(100vh - 130px);
+    padding: 35px 7%;
+    background-color: #f5e5e0;
+}
+
+
+/* TÍTULO */
+
+.titulo-horarios {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo-horarios h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    font-style: italic;
+    color: #713e4a;
+    margin-bottom: 7px;
+}
+
+.titulo-horarios p {
+    color: #6b565b;
+    font-size: 15px;
+}
+
+
+/* CAJA PARA AGREGAR */
+
+.caja-horario {
+    max-width: 900px;
+    margin: 0 auto 30px;
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(113, 62, 74, 0.15);
+}
+
+.caja-horario h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #713e4a;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.caja-horario form {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 20px;
+}
+
+.campo-horario {
+    flex: 1;
+}
+
+.campo-horario label {
+    display: block;
+    color: #713e4a;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.campo-horario input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #d8b9b4;
+    border-radius: 9px;
+    outline: none;
+}
+
+.campo-horario input:focus {
+    border-color: #9b5968;
+}
+
+
+/* BOTÓN AGREGAR */
+
+.caja-horario button {
+    padding: 11px 22px;
+    border: none;
+    border-radius: 22px;
+    background-color: #713e4a;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.caja-horario button:hover {
+    background-color: #9b5968;
+}
+
+
+/* LISTA */
+
+.lista-horarios {
+    max-width: 900px;
+    margin: auto;
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(113, 62, 74, 0.15);
+}
+
+.lista-horarios h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #713e4a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* TABLA */
+
+.tabla-horarios {
+    width: 100%;
+}
+
+.fila-horario {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 10px;
+    border-bottom: 1px solid #ecd9d5;
+    text-align: center;
+    color: #57464a;
+    font-size: 14px;
+}
+
+.encabezado-horario {
+    background-color: #f0d8d2;
+    color: #713e4a;
+    font-weight: bold;
+    border-radius: 9px;
+}
+
+
+/* ESTADOS */
+
+.estado-disponible {
+    color: #39734d;
+    font-weight: bold;
+}
+
+.estado-ocupado {
+    color: #a34b4b;
+    font-weight: bold;
+}
+
+
+/* ELIMINAR */
+
+.boton-eliminar {
+    border: none;
+    background-color: #f1dddd;
+    color: #8c3f4b;
+    padding: 7px 13px;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+.boton-eliminar:hover {
+    background-color: #e8c4c4;
+}
+
+.sin-accion {
+    color: #8b777c;
+    font-size: 13px;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 750px) {
+
+    .caja-horario form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .fila-horario {
+        grid-template-columns: 1fr;
+    }
+
+    .encabezado-horario {
+        display: none;
+    }
+}
+/* =========================================
+   ADMINISTRAR CITAS
+========================================= */
+
+.contenido-citas-admin {
+    min-height: calc(100vh - 130px);
+    padding: 35px 5%;
+    background-color: #f5e5e0;
+}
+
+.titulo-citas-admin {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo-citas-admin h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    font-style: italic;
+    color: #713e4a;
+    margin-bottom: 7px;
+}
+
+.titulo-citas-admin p {
+    color: #6b565b;
+}
+
+
+/* RESUMEN */
+
+.resumen-citas {
+    max-width: 800px;
+    margin: 0 auto 25px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.resumen-citas div {
+    background-color: white;
+    padding: 17px;
+    border-radius: 15px;
+    text-align: center;
+
+    box-shadow: 0 4px 15px
+                rgba(113, 62, 74, 0.13);
+}
+
+.resumen-citas strong {
+    display: block;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 27px;
+    color: #713e4a;
+}
+
+.resumen-citas span {
+    color: #6b565b;
+    font-size: 13px;
+}
+
+
+/* CAJA */
+
+.caja-lista-citas {
+    max-width: 1200px;
+    margin: auto;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 5px 18px
+                rgba(113, 62, 74, 0.15);
+}
+
+.caja-lista-citas h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #713e4a;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+
+/* FILAS */
+
+.fila-cita-admin {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr 1.4fr 1fr 0.8fr 1fr 1.5fr;
+
+    gap: 10px;
+
+    align-items: center;
+
+    padding: 14px 8px;
+
+    border-bottom: 1px solid #ecd9d5;
+
+    text-align: center;
+
+    color: #57464a;
+
+    font-size: 13px;
+}
+
+.encabezado-cita {
+    background-color: #f0d8d2;
+
+    color: #713e4a;
+
+    font-weight: bold;
+
+    border-radius: 9px;
+}
+
+
+/* ESTADOS */
+
+.cita-pendiente {
+    color: #a87523;
+    font-weight: bold;
+}
+
+.cita-confirmada {
+    color: #39734d;
+    font-weight: bold;
+}
+
+
+/* BOTONES */
+
+.acciones-cita {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.confirmar-cita,
+.cancelar-cita {
+    border: none;
+
+    padding: 7px 10px;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.confirmar-cita {
+    background-color: #dcecdf;
+    color: #39734d;
+}
+
+.cancelar-cita {
+    background-color: #f1dddd;
+    color: #8c3f4b;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 850px) {
+
+    .resumen-citas {
+        grid-template-columns: 1fr;
+    }
+
+    .fila-cita-admin {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .encabezado-cita {
+        display: none;
+    }
+
+}
+/* =========================================
+   ADMINISTRAR SERVICIOS
+========================================= */
+
+.contenido-servicios-admin {
+    min-height: calc(100vh - 130px);
+    padding: 35px 5%;
+    background-color: #f5e5e0;
+}
+
+
+/* TÍTULO */
+
+.titulo-servicios-admin {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo-servicios-admin h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    font-style: italic;
+    color: #713e4a;
+    margin-bottom: 7px;
+}
+
+.titulo-servicios-admin p {
+    color: #6b565b;
+}
+
+
+/* AGREGAR SERVICIO */
+
+.caja-agregar-servicio {
+    max-width: 1050px;
+    margin: 0 auto 30px;
+
+    background-color: white;
+
+    padding: 25px 30px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 5px 18px
+                rgba(113, 62, 74, 0.15);
+}
+
+.caja-agregar-servicio h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #713e4a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+#formularioServicio {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr 0.7fr 1.8fr auto;
+
+    gap: 15px;
+
+    align-items: end;
+}
+
+
+.campo-servicio-admin label {
+    display: block;
+
+    color: #713e4a;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+
+.campo-servicio-admin input {
+    width: 100%;
+
+    padding: 11px;
+
+    border: 1px solid #d8b9b4;
+
+    border-radius: 9px;
+
+    outline: none;
+}
+
+
+.campo-servicio-admin input:focus {
+    border-color: #9b5968;
+}
+
+
+#formularioServicio button {
+    padding: 11px 20px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+#formularioServicio button:hover {
+    background-color: #9b5968;
+}
+
+
+/* LISTA */
+
+.lista-servicios-admin {
+    max-width: 1050px;
+
+    margin: auto;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 5px 18px
+                rgba(113, 62, 74, 0.15);
+}
+
+
+.lista-servicios-admin h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #713e4a;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+
+/* FILAS */
+
+.fila-servicio-admin {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr 2fr 0.7fr 1.2fr;
+
+    gap: 12px;
+
+    align-items: center;
+
+    padding: 14px 10px;
+
+    border-bottom: 1px solid #ecd9d5;
+
+    text-align: center;
+
+    color: #57464a;
+
+    font-size: 13px;
+}
+
+
+.encabezado-servicio {
+    background-color: #f0d8d2;
+
+    color: #713e4a;
+
+    font-weight: bold;
+
+    border-radius: 9px;
+}
+
+
+/* BOTONES */
+
+.acciones-servicio {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 7px;
+}
+
+
+.editar-servicio,
+.eliminar-servicio {
+    border: none;
+
+    padding: 7px 12px;
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+
+.editar-servicio {
+    background-color: #f0e3c7;
+    color: #805d1d;
+}
+
+
+.eliminar-servicio {
+    background-color: #f1dddd;
+    color: #8c3f4b;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 850px) {
+
+    #formularioServicio {
+        grid-template-columns: 1fr;
+    }
+
+    .fila-servicio-admin {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .encabezado-servicio {
+        display: none;
+    }
+
+}
+.sin-citas {
+    text-align: center;
+    color: #8b777c;
+    font-size: 14px;
+    padding: 30px 10px 15px;
+}
+
+.mensaje-horarios {
+    margin-top: 8px;
+    color: #9b5968;
+    font-size: 13px;
+}
+
+#botonAgendar:disabled {
+    background-color: #bda9ad;
+    cursor: not-allowed;
+    transform: none;
+}
+/* =========================================
+   CONSULTAR CITA
+========================================= */
+
+.pagina-consultar {
+    background-color: #fff9f7;
+}
+
+.contenido-consultar {
+    min-height: calc(100vh - 130px);
+
+    padding: 45px 20px;
+
+    background-color: #f5e5e0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+
+.caja-consultar {
+    width: 100%;
+
+    max-width: 650px;
+
+    background-color: white;
+
+    padding: 35px 40px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 7px 22px
+                rgba(113, 62, 74, 0.18);
+}
+
+
+.caja-consultar > h1 {
+    text-align: center;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 34px;
+
+    font-style: italic;
+
+    color: #713e4a;
+
+    margin-bottom: 8px;
+}
+
+
+.texto-consultar {
+    text-align: center;
+
+    color: #6b565b;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+}
+
+
+/* FORMULARIO */
+
+#formularioConsulta label {
+    display: block;
+
+    color: #713e4a;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+
+#formularioConsulta input {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    border: 1px solid #d8b9b4;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+
+#formularioConsulta input:focus {
+    border-color: #9b5968;
+}
+
+
+#formularioConsulta button {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+#formularioConsulta button:hover {
+    background-color: #9b5968;
+}
+
+
+/* RESULTADOS */
+
+.resultado-citas {
+    margin-top: 28px;
+}
+
+
+.tarjeta-consulta-cita {
+    background-color: #fff9f7;
+
+    border: 1px solid #ead5d0;
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    margin-top: 15px;
+}
+
+
+.tarjeta-consulta-cita h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #713e4a;
+
+    text-align: center;
+
+    margin-bottom: 15px;
+}
+
+
+.datos-consulta p {
+    color: #57464a;
+
+    font-size: 14px;
+
+    margin: 8px 0;
+}
+
+
+.estado-consulta-pendiente,
+.estado-consulta-confirmada {
+    width: fit-content;
+
+    margin: 18px auto 10px;
+
+    padding: 8px 20px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+.estado-consulta-pendiente {
+    background-color: #f4ead2;
+
+    color: #9a6b1f;
+}
+
+
+.estado-consulta-confirmada {
+    background-color: #dcecdf;
+
+    color: #39734d;
+}
+
+
+.mensaje-estado-cita {
+    text-align: center;
+
+    color: #6b565b;
+
+    font-size: 14px;
+
+    margin-top: 10px;
+}
+
+
+.cita-no-encontrada {
+    text-align: center;
+
+    background-color: #fff3f1;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    color: #8d4d5c;
+}
+
+
+.cita-no-encontrada h3 {
+    margin-bottom: 7px;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .caja-consultar {
+        padding: 28px 20px;
+    }
+
+}
+/* CITA CANCELADA */
+
+.cita-cancelada {
+    background-color: #f5d9dc;
+    color: #a13d4d;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sin-accion {
+    color: #8a777b;
+    font-size: 12px;
+}
+/* BOTONES DEL FORMULARIO DE SERVICIOS */
+
+.botones-formulario-servicio {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.boton-cancelar-edicion {
+    background-color: #e8d8d5 !important;
+    color: #713e4a !important;
+}
+
+.boton-cancelar-edicion:hover {
+    background-color: #d9c2be !important;
+}
+/* =========================================
+   FOTO DEL DISEÑO - AGENDAR CITA
+========================================= */
+
+#fotoDiseno {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.ayuda-foto {
+    margin-top: -7px;
+    margin-bottom: 15px;
+
+    font-size: 12px;
+    line-height: 1.5;
+
+    color: #806b70;
+}
+
+
+/* VISTA PREVIA */
+
+.contenedor-vista-previa {
+    margin: 5px 0 20px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    background-color: #fff9f7;
+
+    border: 1px solid #ead5d0;
+
+    border-radius: 14px;
+}
+
+.contenedor-vista-previa p {
+    margin-bottom: 10px;
+
+    color: #713e4a;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.contenedor-vista-previa img {
+    display: block;
+
+    width: 180px;
+    height: 180px;
+
+    margin: 0 auto 12px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+}
+
+
+/* QUITAR FOTO */
+
+.boton-quitar-foto {
+    width: auto !important;
+
+    padding: 8px 18px !important;
+
+    margin-top: 0 !important;
+
+    background-color: #ead8d5 !important;
+
+    color: #713e4a !important;
+
+    font-size: 12px !important;
+}
+
+.boton-quitar-foto:hover {
+    background-color: #ddc3bf !important;
+}
+
+
+/* AVISO DE COTIZACIÓN */
+
+.aviso-cotizacion {
+    margin: 18px 0;
+
+    padding: 15px 18px;
+
+    background-color: #f8ece9;
+
+    border-left: 4px solid #b77885;
+
+    border-radius: 8px;
+}
+
+.aviso-cotizacion strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #713e4a;
+}
+
+.aviso-cotizacion p {
+    margin: 0;
+
+    color: #6b565b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+/* =========================================
+   VER SOLICITUD - ADMINISTRACIÓN
+========================================= */
+
+.ver-solicitud {
+    background-color: #713e4a;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.ver-solicitud:hover {
+    background-color: #8d5360;
+}
+
+
+/* FONDO DE LA VENTANA */
+
+.fondo-solicitud {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(45, 30, 35, 0.65);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    z-index: 1000;
+}
+
+
+/* VENTANA */
+
+.ventana-solicitud {
+    position: relative;
+
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background-color: #fff9f7;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+.ventana-solicitud h2 {
+    text-align: center;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+
+    color: #713e4a;
+
+    margin-bottom: 25px;
+}
+
+
+/* CERRAR */
+
+.cerrar-solicitud {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    border: none;
+    background: transparent;
+
+    color: #713e4a;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+
+/* DATOS */
+
+.datos-solicitud {
+    background-color: white;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+.datos-solicitud p {
+    margin: 7px 0;
+
+    color: #59464b;
+}
+
+
+.datos-solicitud strong {
+    color: #713e4a;
+}
+
+
+/* DISEÑO */
+
+.seccion-diseno-admin {
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+
+.seccion-diseno-admin h3 {
+    color: #713e4a;
+
+    margin-bottom: 12px;
+}
+
+
+#imagenSolicitud {
+    display: block;
+
+    width: 100%;
+    max-width: 350px;
+    max-height: 350px;
+
+    margin: auto;
+
+    object-fit: contain;
+
+    background-color: white;
+
+    border-radius: 14px;
+
+    border: 1px solid #ead5d0;
+
+    padding: 5px;
+}
+
+
+.sin-imagen-solicitud {
+    padding: 20px;
+
+    background-color: #f5e8e5;
+
+    color: #806b70;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+}
+
+
+/* DETALLES */
+
+.detalles-solicitud {
+    margin-bottom: 20px;
+
+    padding: 16px;
+
+    background-color: white;
+
+    border-radius: 12px;
+}
+
+
+.detalles-solicitud h3 {
+    color: #713e4a;
+
+    margin-bottom: 8px;
+}
+
+
+.detalles-solicitud p {
+    color: #665358;
+
+    line-height: 1.5;
+}
+
+
+/* COTIZACIÓN */
+
+.cotizacion-admin {
+    padding: 18px;
+
+    background-color: #f7e9e6;
+
+    border-radius: 12px;
+}
+
+
+.cotizacion-admin label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #713e4a;
+
+    font-weight: bold;
+}
+
+
+.campo-precio-admin {
+    display: flex;
+    align-items: center;
+
+    background-color: white;
+
+    border: 1px solid #d8b9b5;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+
+.campo-precio-admin span {
+    padding-left: 14px;
+
+    color: #713e4a;
+
+    font-weight: bold;
+}
+
+
+.campo-precio-admin input {
+    width: 100%;
+
+    border: none !important;
+
+    outline: none;
+
+    padding: 12px;
+
+    background-color: transparent;
+}
+
+
+.ayuda-cotizacion {
+    margin-top: 7px;
+
+    font-size: 12px;
+
+    color: #806b70;
+}
+
+
+/* BOTONES */
+
+.botones-cotizacion {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+
+.boton-guardar-precio,
+.boton-confirmar-solicitud {
+    flex: 1;
+
+    padding: 11px 15px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+.boton-guardar-precio {
+    background-color: #e5cbc7;
+
+    color: #713e4a;
+}
+
+
+.boton-confirmar-solicitud {
+    background-color: #713e4a;
+
+    color: white;
+}
+
+
+.boton-guardar-precio:hover {
+    background-color: #d8b9b5;
+}
+
+
+.boton-confirmar-solicitud:hover {
+    background-color: #8c5260;
+}
+
+
+/* CANCELADA */
+
+.mensaje-cita-cancelada {
+    margin-top: 15px;
+
+    padding: 12px;
+
+    text-align: center;
+
+    background-color: #f5d9dc;
+
+    color: #a13d4d;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+/* =========================================
+   ADMINISTRACIÓN DE COTIZACIONES
+========================================= */
+
+.tabla-cotizaciones-admin {
+    width: 100%;
+}
+
+.fila-cotizacion-admin {
+    display: grid;
+
+    grid-template-columns:
+        1.1fr 1.4fr 0.8fr 0.9fr 0.9fr 1fr;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 12px;
+
+    border-bottom: 1px solid #ead8d5;
+
+    font-size: 13px;
+}
+
+.encabezado-cotizacion {
+    background-color: #713e4a;
+
+    color: white;
+
+    font-weight: bold;
+
+    border-radius: 8px 8px 0 0;
+}
+
+
+/* ESTADOS */
+
+.cotizacion-pendiente {
+    width: fit-content;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background-color: #f7e7bc;
+
+    color: #87651d;
+
+    font-weight: bold;
+}
+
+.cotizacion-lista {
+    width: fit-content;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background-color: #dcebdc;
+
+    color: #47704a;
+
+    font-weight: bold;
+}
+
+
+/* BOTÓN VER */
+
+.ver-cotizacion {
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.ver-cotizacion:hover {
+    background-color: #925966;
+}
+
+
+/* =========================================
+   VENTANA DE COTIZACIÓN
+========================================= */
+
+.fondo-cotizacion {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 25px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(45, 30, 35, 0.65);
+
+    z-index: 1000;
+}
+
+
+.ventana-cotizacion {
+    position: relative;
+
+    width: 100%;
+    max-width: 600px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    background-color: #fff9f7;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+.ventana-cotizacion h2 {
+    margin-bottom: 22px;
+
+    text-align: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+
+    color: #713e4a;
+}
+
+
+/* CERRAR */
+
+.cerrar-cotizacion {
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #713e4a;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+
+/* DATOS */
+
+.datos-cotizacion {
+    margin-bottom: 20px;
+
+    padding: 17px;
+
+    background-color: white;
+
+    border-radius: 12px;
+}
+
+.datos-cotizacion p {
+    margin: 7px 0;
+
+    color: #59464b;
+}
+
+.datos-cotizacion strong {
+    color: #713e4a;
+}
+
+
+/* FOTO */
+
+.diseno-cotizacion {
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+.diseno-cotizacion h3 {
+    margin-bottom: 12px;
+
+    color: #713e4a;
+}
+
+#imagenCotizacion {
+    display: block;
+
+    width: 100%;
+    max-width: 350px;
+
+    max-height: 350px;
+
+    margin: auto;
+
+    object-fit: contain;
+
+    background-color: white;
+
+    border: 1px solid #ead5d0;
+
+    border-radius: 14px;
+
+    padding: 5px;
+}
+
+
+/* DETALLES */
+
+.detalles-cotizacion {
+    margin-bottom: 20px;
+
+    padding: 17px;
+
+    background-color: white;
+
+    border-radius: 12px;
+}
+
+.detalles-cotizacion h3 {
+    margin-bottom: 8px;
+
+    color: #713e4a;
+}
+
+.detalles-cotizacion p {
+    color: #665358;
+
+    line-height: 1.5;
+}
+
+
+/* PRECIO */
+
+.precio-cotizacion-admin {
+    padding: 18px;
+
+    background-color: #f7e9e6;
+
+    border-radius: 12px;
+}
+
+.precio-cotizacion-admin label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #713e4a;
+
+    font-weight: bold;
+}
+
+.campo-precio-cotizacion {
+    display: flex;
+
+    align-items: center;
+
+    background-color: white;
+
+    border: 1px solid #d8b9b5;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+.campo-precio-cotizacion span {
+    padding-left: 14px;
+
+    color: #713e4a;
+
+    font-weight: bold;
+}
+
+.campo-precio-cotizacion input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none !important;
+
+    outline: none;
+
+    background: transparent;
+}
+
+.precio-cotizacion-admin p {
+    margin-top: 7px;
+
+    color: #806b70;
+
+    font-size: 12px;
+}
+
+.precio-cotizacion-admin button {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #713e4a;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.precio-cotizacion-admin button:hover {
+    background-color: #925966;
+}
+/* =========================================
+   CONSULTAR COTIZACIÓN
+========================================= */
+
+#resultadosCotizacion {
+    margin-top: 30px;
+}
+
+.tarjeta-consulta-cotizacion {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 25px;
+    box-shadow: 0 8px 20px rgba(90, 45, 55, 0.10);
+}
+
+.tarjeta-consulta-cotizacion > h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #743646;
+}
+
+.datos-cotizacion {
+    background: #fff8f6;
+    border-radius: 15px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.datos-cotizacion p {
+    margin: 8px 0;
+}
+
+.foto-consulta-cotizacion {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.foto-consulta-cotizacion p {
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #743646;
+}
+
+.foto-consulta-cotizacion img {
+    width: 100%;
+    max-width: 300px;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 15px;
+    border: 1px solid #e8c9c3;
+}
+
+.detalles-consulta {
+    background: #fff8f6;
+    border-radius: 15px;
+    padding: 18px;
+    margin: 20px 0;
+}
+
+.detalles-consulta h3 {
+    color: #743646;
+    margin-bottom: 8px;
+}
+
+.precio-consulta {
+    text-align: center;
+    background: #f7e5e1;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.precio-consulta p {
+    margin-bottom: 5px;
+}
+
+.precio-consulta h2 {
+    font-size: 32px;
+    color: #743646;
+    margin: 0;
+}
+
+.mensaje-cotizada {
+    text-align: center;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.boton-agendar-cotizacion {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0;
+    padding: 12px 28px;
+    background: #7b3b4b;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.boton-agendar-cotizacion:hover {
+    opacity: 0.9;
+}
+
+.cotizacion-pendiente {
+    background: #f7e5e1;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cotizacion-pendiente h3 {
+    color: #743646;
+    margin-bottom: 10px;
+}

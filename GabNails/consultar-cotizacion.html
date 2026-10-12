@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Consultar cotización - GAB-NAILS</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body class="pagina-cita">
+
+    <!-- ENCABEZADO -->
+    <header>
+
+        <img src="imagenes/logo.png"
+             alt="Logo de GAB-NAILS">
+
+        <h2>GAB-NAILS</h2>
+
+        <nav>
+            <ul>
+
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="servicios.html">Servicios</a>
+                </li>
+
+                <li>
+                    <a href="cotizacion.html">
+                        Cotizaciones y citas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contacto.html">Contacto</a>
+                </li>
+
+                <li>
+                    <a href="login.html">Administración</a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <!-- CONTENIDO -->
+    <main class="contenido-cita">
+
+        <div class="formulario-cita">
+
+            <h1>Consultar cotización</h1>
+
+            <p class="texto-cita">
+                Escribe el mismo número de teléfono
+                que utilizaste cuando enviaste tu diseño.
+            </p>
+
+
+            <!-- BUSCAR -->
+            <form id="formularioConsulta">
+
+                <label for="telefono">
+                    Número de teléfono
+                </label>
+
+                <input
+                    type="tel"
+                    id="telefono"
+                    placeholder="Ejemplo: 4411004275"
+                    maxlength="10"
+                    inputmode="numeric"
+                    required
+                >
+
+                <button type="submit">
+                    Buscar cotización
+                </button>
+
+            </form>
+
+
+            <!-- MENSAJES -->
+            <p id="mensajeConsulta"></p>
+
+
+            <!-- AQUÍ APARECERÁ LA COTIZACIÓN -->
+            <div id="resultadoCotizacion"></div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 GAB-NAILS. Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // =========================================
+        // ELEMENTOS
+        // =========================================
+
+        const formularioConsulta =
+            document.getElementById("formularioConsulta");
+
+        const telefonoInput =
+            document.getElementById("telefono");
+
+        const mensajeConsulta =
+            document.getElementById("mensajeConsulta");
+
+        const resultadoCotizacion =
+            document.getElementById("resultadoCotizacion");
+
+
+        // =========================================
+        // SOLO NÚMEROS
+        // =========================================
+
+        telefonoInput.addEventListener("input", function() {
+
+            this.value =
+                this.value.replace(/\D/g, "");
+
+        });
+
+
+        // =========================================
+        // BUSCAR COTIZACIÓN
+        // =========================================
+
+        formularioConsulta.addEventListener(
+            "submit",
+            function(evento) {
+
+                evento.preventDefault();
+
+
+                const telefono =
+                    telefonoInput.value.trim();
+
+
+                mensajeConsulta.textContent = "";
+
+                resultadoCotizacion.innerHTML = "";
+
+
+                // VALIDAR
+                if (telefono.length !== 10) {
+
+                    mensajeConsulta.textContent =
+                        "Escribe un número de teléfono de 10 dígitos.";
+
+                    return;
+                }
+
+
+                // =====================================
+                // LEER COTIZACIONES
+                // =====================================
+
+                let cotizaciones = [];
+
+                try {
+
+                    cotizaciones =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "cotizacionesGabNails"
+                            )
+                        ) || [];
+
+                } catch (error) {
+
+                    cotizaciones = [];
+
+                }
+
+
+                // =====================================
+                // BUSCAR POR TELÉFONO
+                // =====================================
+
+                const cotizacionesEncontradas =
+                    cotizaciones.filter(
+                        function(cotizacion) {
+
+                            return String(
+                                cotizacion.telefono
+                            ).trim() === telefono;
+
+                        }
+                    );
+
+
+                // =====================================
+                // NO ENCONTRÓ
+                // =====================================
+
+                if (cotizacionesEncontradas.length === 0) {
+
+                    mensajeConsulta.textContent =
+                        "No se encontró una cotización con ese número de teléfono.";
+
+                    return;
+                }
+
+
+                // =====================================
+                // MOSTRAR TODAS LAS DEL TELÉFONO
+                // LA MÁS RECIENTE PRIMERO
+                // =====================================
+
+                cotizacionesEncontradas
+                    .slice()
+                    .reverse()
+                    .forEach(function(cotizacion) {
+
+                        mostrarCotizacion(cotizacion);
+
+                    });
+
+            }
+        );
+
+
+        // =========================================
+        // MOSTRAR COTIZACIÓN
+        // =========================================
+
+        function mostrarCotizacion(cotizacion) {
+
+            const tarjeta =
+                document.createElement("div");
+
+            tarjeta.className =
+                "tarjeta-consulta-cotizacion";
+
+
+            const estado =
+                cotizacion.estado || "Pendiente";
+
+
+            const detalles =
+                cotizacion.detalles
+                    ? cotizacion.detalles
+                    : "Sin detalles adicionales.";
+
+
+            // =====================================
+            // FOTO
+            // =====================================
+
+            let foto = "";
+
+            if (cotizacion.imagenDiseno) {
+
+                foto = `
+                    <div class="foto-consulta-cotizacion">
+
+                        <h3>Diseño enviado</h3>
+
+                        <img
+                            src="${cotizacion.imagenDiseno}"
+                            alt="Diseño enviado"
+                        >
+
+                    </div>
+                `;
+
+            }
+
+
+            // =====================================
+            // PRECIO
+            // =====================================
+
+            let precio = "";
+
+
+            if (
+                cotizacion.precioCotizado !== null &&
+                cotizacion.precioCotizado !== "" &&
+                cotizacion.precioCotizado !== undefined
+            ) {
+
+                precio = `
+
+                    <div class="precio-consulta">
+
+                        <p>
+                            Precio cotizado
+                        </p>
+
+                        <h2>
+                            $${Number(
+                                cotizacion.precioCotizado
+                            ).toFixed(2)}
+                        </h2>
+
+                    </div>
+
+
+                    <p class="mensaje-cotizada">
+
+                        Tu diseño ya fue revisado.
+
+                        Si estás de acuerdo con el precio,
+                        puedes continuar con tu cita.
+
+                    </p>
+
+
+                    <a
+                        href="cita.html?cotizacion=${cotizacion.id || ""}"
+                        class="boton-agendar-cotizacion"
+                    >
+                        Agendar cita
+                    </a>
+
+                `;
+
+            } else {
+
+                precio = `
+
+                    <div class="cotizacion-pendiente">
+
+                        <h3>
+                            Cotización pendiente
+                        </h3>
+
+                        <p>
+                            Tu diseño todavía está siendo
+                            revisado. Vuelve a consultar
+                            más tarde para conocer el precio.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            // =====================================
+            // CREAR TARJETA
+            // =====================================
+
+            tarjeta.innerHTML = `
+
+                <h2>
+                    Tu cotización
+                </h2>
+
+
+                <div class="datos-cotizacion">
+
+                    <p>
+                        <strong>Teléfono:</strong>
+                        ${cotizacion.telefono}
+                    </p>
+
+                    <p>
+                        <strong>Servicio:</strong>
+                        ${cotizacion.servicio}
+                    </p>
+
+                    <p>
+                        <strong>Largo:</strong>
+                        Número ${cotizacion.tamano}
+                    </p>
+
+                    <p>
+                        <strong>Estado:</strong>
+                        ${estado}
+                    </p>
+
+                </div>
+
+
+                ${foto}
+
+
+                <div class="detalles-consulta">
+
+                    <h3>
+                        Detalles adicionales
+                    </h3>
+
+                    <p>
+                        ${detalles}
+                    </p>
+
+                </div>
+
+
+                ${precio}
+
+            `;
+
+
+            resultadoCotizacion.appendChild(
+                tarjeta
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

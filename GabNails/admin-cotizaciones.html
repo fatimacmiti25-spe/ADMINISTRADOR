@@ -1,0 +1,817 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizaciones - GAB-NAILS</title>
+    <link rel="stylesheet" href="estilos.css">
+
+    <style>
+        .acciones-cotizaciones {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .acciones-cotizaciones p {
+            margin: 0;
+            color: #743646;
+        }
+
+        .boton-eliminar-pendientes,
+        .boton-eliminar-cotizacion {
+            background: #a84353;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .boton-eliminar-pendientes:hover,
+        .boton-eliminar-cotizacion:hover {
+            background: #812d3c;
+        }
+
+        .boton-eliminar-pendientes:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .acciones-fila-cotizacion {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            align-items: center;
+        }
+
+        .acciones-fila-cotizacion button {
+            white-space: nowrap;
+        }
+
+        .fila-cotizacion-admin {
+            align-items: center;
+        }
+
+        .mensaje-cotizaciones {
+            margin: 12px 0;
+            color: #743646;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .tabla-cotizaciones-admin {
+                overflow-x: auto;
+            }
+
+            .fila-cotizacion-admin {
+                min-width: 780px;
+            }
+        }
+    </style>
+</head>
+
+<body class="pagina-admin">
+
+    <!-- ENCABEZADO -->
+    <header>
+        <img src="imagenes/logo.png" alt="Logo de GAB-NAILS">
+        <h2>GAB-NAILS</h2>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="administrador.html">Administración</a>
+                </li>
+                <li>
+                    <a href="login.html">Cerrar sesión</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenido-citas-admin">
+
+        <!-- TÍTULO -->
+        <section class="titulo-citas-admin">
+            <h1>Cotizaciones</h1>
+            <p>
+                Revisa los diseños enviados por las clientas
+                y asigna el precio correspondiente.
+            </p>
+        </section>
+
+        <!-- CONTADORES -->
+        <section class="resumen-citas">
+
+            <div>
+                <strong id="numeroPendientes">0</strong>
+                <span>Pendientes</span>
+            </div>
+
+            <div>
+                <strong id="numeroCotizadas">0</strong>
+                <span>Cotizadas</span>
+            </div>
+
+            <div>
+                <strong id="numeroTotal">0</strong>
+                <span>Total</span>
+            </div>
+
+        </section>
+
+        <!-- LISTA -->
+        <section class="caja-lista-citas">
+
+            <h2>Solicitudes de cotización</h2>
+
+            <div class="acciones-cotizaciones">
+                <p>
+                    Se muestra una sola solicitud pendiente
+                    por número de teléfono.
+                </p>
+
+                <button
+                    type="button"
+                    id="eliminarPendientes"
+                    class="boton-eliminar-pendientes">
+                    Eliminar pendientes
+                </button>
+            </div>
+
+            <p id="mensajeCotizaciones"
+               class="mensaje-cotizaciones"></p>
+
+            <div class="tabla-cotizaciones-admin"
+                 id="tablaCotizaciones">
+
+                <div class="fila-cotizacion-admin encabezado-cotizacion">
+                    <span>Teléfono</span>
+                    <span>Servicio</span>
+                    <span>Largo</span>
+                    <span>Estado</span>
+                    <span>Precio</span>
+                    <span>Acciones</span>
+                </div>
+
+            </div>
+
+            <p id="sinCotizaciones" class="sin-citas">
+                No hay cotizaciones registradas.
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- VENTANA DE COTIZACIÓN -->
+    <div id="fondoCotizacion"
+         class="fondo-cotizacion"
+         style="display: none;">
+
+        <div class="ventana-cotizacion">
+
+            <button type="button"
+                    id="cerrarCotizacion"
+                    class="cerrar-cotizacion">
+                ×
+            </button>
+
+            <h2>Solicitud de cotización</h2>
+
+            <div class="datos-cotizacion">
+
+                <p>
+                    <strong>Teléfono:</strong>
+                    <span id="detalleTelefono"></span>
+                </p>
+
+                <p>
+                    <strong>Servicio:</strong>
+                    <span id="detalleServicio"></span>
+                </p>
+
+                <p>
+                    <strong>Largo:</strong>
+                    Número <span id="detalleTamano"></span>
+                </p>
+
+                <p>
+                    <strong>Estado:</strong>
+                    <span id="detalleEstado"></span>
+                </p>
+
+            </div>
+
+            <div class="diseno-cotizacion">
+                <h3>Diseño solicitado</h3>
+
+                <img id="imagenCotizacion"
+                     alt="Diseño enviado por la clienta">
+            </div>
+
+            <div class="detalles-cotizacion">
+                <h3>Detalles adicionales</h3>
+
+                <p id="detalleTexto">
+                    Sin detalles adicionales.
+                </p>
+            </div>
+
+            <div class="precio-cotizacion-admin">
+
+                <label for="precioCotizacion">
+                    Precio cotizado
+                </label>
+
+                <div class="campo-precio-cotizacion">
+                    <span>$</span>
+
+                    <input
+                        type="number"
+                        id="precioCotizacion"
+                        min="1"
+                        step="0.01"
+                        placeholder="Ejemplo: 450">
+                </div>
+
+                <p>
+                    Escribe el precio correspondiente después
+                    de revisar el diseño y el largo.
+                </p>
+
+                <button type="button"
+                        id="guardarCotizacion">
+                    Guardar cotización
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 GAB-NAILS. Administración.</p>
+    </footer>
+
+    <script>
+        // =========================================
+        // ELEMENTOS
+        // =========================================
+
+        const tabla = document.getElementById(
+            "tablaCotizaciones"
+        );
+
+        const sinCotizaciones = document.getElementById(
+            "sinCotizaciones"
+        );
+
+        const fondoCotizacion = document.getElementById(
+            "fondoCotizacion"
+        );
+
+        const cerrarCotizacion = document.getElementById(
+            "cerrarCotizacion"
+        );
+
+        const precioCotizacion = document.getElementById(
+            "precioCotizacion"
+        );
+
+        const guardarCotizacion = document.getElementById(
+            "guardarCotizacion"
+        );
+
+        const eliminarPendientes = document.getElementById(
+            "eliminarPendientes"
+        );
+
+        const mensajeCotizaciones = document.getElementById(
+            "mensajeCotizaciones"
+        );
+
+        let indiceSeleccionado = null;
+        let cotizaciones = [];
+
+        // =========================================
+        // LEER COTIZACIONES
+        // =========================================
+
+        function cargarDatos() {
+            try {
+                const datos = JSON.parse(
+                    localStorage.getItem("cotizacionesGabNails")
+                );
+
+                cotizaciones = Array.isArray(datos) ? datos : [];
+
+            } catch (error) {
+                cotizaciones = [];
+                console.error("Error al leer cotizaciones:", error);
+            }
+        }
+
+        function guardarDatos(nuevosDatos) {
+            try {
+                localStorage.setItem(
+                    "cotizacionesGabNails",
+                    JSON.stringify(nuevosDatos)
+                );
+
+                cotizaciones = nuevosDatos;
+                return true;
+
+            } catch (error) {
+                alert(
+                    "No se pudieron guardar los cambios. Revisa el almacenamiento del navegador."
+                );
+
+                console.error(error);
+                return false;
+            }
+        }
+
+        // =========================================
+        // COMPROBAR SI TIENE CITA
+        // =========================================
+
+        function tieneCitaRegistrada(cotizacion) {
+            let citas = [];
+
+            try {
+                const datos = JSON.parse(
+                    localStorage.getItem("citasGabNails")
+                );
+
+                citas = Array.isArray(datos) ? datos : [];
+
+            } catch (error) {
+                console.error(error);
+            }
+
+            // No eliminar cotizaciones relacionadas con citas,
+            // incluso si la cita está cancelada.
+
+            return citas.some(function(cita) {
+                return cotizacion.id != null &&
+                    cita.cotizacionId != null &&
+                    String(cita.cotizacionId) ===
+                    String(cotizacion.id);
+            });
+        }
+
+        // =========================================
+        // COMPROBAR ESTADO
+        // =========================================
+
+        function estaCotizada(cotizacion) {
+            return cotizacion.precioCotizado !== null &&
+                cotizacion.precioCotizado !== undefined &&
+                cotizacion.precioCotizado !== "" &&
+                Number.isFinite(Number(cotizacion.precioCotizado)) &&
+                Number(cotizacion.precioCotizado) > 0;
+        }
+
+        // =========================================
+        // MOSTRAR SOLO UNA PENDIENTE POR TELÉFONO
+        // =========================================
+
+        function obtenerCotizacionesVisibles() {
+
+            const telefonosPendientes = new Set();
+            const visibles = [];
+
+            // Se recorre de la última solicitud a la primera.
+            // Se conservan todas las que ya tienen precio.
+
+            for (let i = cotizaciones.length - 1; i >= 0; i--) {
+
+                const cotizacion = cotizaciones[i];
+
+                if (estaCotizada(cotizacion)) {
+                    visibles.push({
+                        cotizacion: cotizacion,
+                        indice: i
+                    });
+
+                    continue;
+                }
+
+                const telefono = String(
+                    cotizacion.telefono || ""
+                ).replace(/\D/g, "");
+
+                // Si no hay teléfono, se identifica
+                // por su posición para no ocultar otra solicitud.
+
+                const clave = telefono || "sin-telefono-" + i;
+
+                if (!telefonosPendientes.has(clave)) {
+                    telefonosPendientes.add(clave);
+
+                    visibles.push({
+                        cotizacion: cotizacion,
+                        indice: i
+                    });
+                }
+            }
+
+            return visibles;
+        }
+
+        // =========================================
+        // MOSTRAR COTIZACIONES
+        // =========================================
+
+        function mostrarCotizaciones() {
+
+            cargarDatos();
+
+            const filas = tabla.querySelectorAll(
+                ".fila-cotizacion-admin:not(.encabezado-cotizacion)"
+            );
+
+            filas.forEach(function(fila) {
+                fila.remove();
+            });
+
+            const visibles = obtenerCotizacionesVisibles();
+
+            sinCotizaciones.style.display =
+                visibles.length === 0 ? "block" : "none";
+
+            visibles.forEach(function(elemento) {
+
+                const cotizacion = elemento.cotizacion;
+                const indice = elemento.indice;
+
+                const fila = document.createElement("div");
+                fila.className = "fila-cotizacion-admin";
+
+                const cotizada = estaCotizada(cotizacion);
+
+                const estado = cotizada
+                    ? "Cotizada"
+                    : "Pendiente";
+
+                const claseEstado = cotizada
+                    ? "cotizacion-lista"
+                    : "cotizacion-pendiente";
+
+                const precioMostrar = cotizada
+                    ? "$" + Number(
+                        cotizacion.precioCotizado
+                    ).toFixed(2)
+                    : "Pendiente";
+
+                // Crear los datos sin insertar texto
+                // de la clienta directamente como HTML.
+
+                function agregarCelda(texto, clase = "") {
+                    const celda = document.createElement("span");
+
+                    if (clase) {
+                        celda.className = clase;
+                    }
+
+                    celda.textContent = texto;
+                    fila.appendChild(celda);
+
+                    return celda;
+                }
+
+                agregarCelda(cotizacion.telefono || "");
+                agregarCelda(cotizacion.servicio || "");
+                agregarCelda(
+                    "Número " + (cotizacion.tamano || "")
+                );
+                agregarCelda(estado, claseEstado);
+                agregarCelda(precioMostrar);
+
+                const acciones = document.createElement("span");
+                acciones.className = "acciones-fila-cotizacion";
+
+                const botonVer = document.createElement("button");
+                botonVer.type = "button";
+                botonVer.className = "ver-cotizacion";
+                botonVer.textContent = "Ver solicitud";
+
+                botonVer.addEventListener("click", function() {
+                    abrirCotizacion(indice);
+                });
+
+                const botonEliminar = document.createElement("button");
+                botonEliminar.type = "button";
+                botonEliminar.className =
+                    "boton-eliminar-cotizacion";
+                botonEliminar.textContent = "Eliminar";
+
+                if (tieneCitaRegistrada(cotizacion)) {
+                    botonEliminar.disabled = true;
+                    botonEliminar.title =
+                        "Esta cotización tiene una cita registrada.";
+                }
+
+                botonEliminar.addEventListener("click", function() {
+                    eliminarCotizacion(indice);
+                });
+
+                acciones.appendChild(botonVer);
+                acciones.appendChild(botonEliminar);
+                fila.appendChild(acciones);
+
+                tabla.appendChild(fila);
+            });
+
+            actualizarContadores();
+
+            const pendientesOcultas =
+                cotizaciones.length - visibles.length;
+
+            mensajeCotizaciones.textContent =
+                pendientesOcultas > 0
+                    ? "Hay " + pendientesOcultas +
+                      " solicitud(es) pendiente(s) repetida(s) que no se muestran."
+                    : "";
+        }
+
+        // =========================================
+        // CONTADORES
+        // =========================================
+
+        function actualizarContadores() {
+
+            const pendientes = cotizaciones.filter(
+                function(cotizacion) {
+                    return !estaCotizada(cotizacion);
+                }
+            ).length;
+
+            const cotizadas = cotizaciones.filter(
+                function(cotizacion) {
+                    return estaCotizada(cotizacion);
+                }
+            ).length;
+
+            document.getElementById(
+                "numeroPendientes"
+            ).textContent = pendientes;
+
+            document.getElementById(
+                "numeroCotizadas"
+            ).textContent = cotizadas;
+
+            document.getElementById(
+                "numeroTotal"
+            ).textContent = cotizaciones.length;
+
+            eliminarPendientes.disabled = pendientes === 0;
+        }
+
+        // =========================================
+        // ABRIR COTIZACIÓN
+        // =========================================
+
+        function abrirCotizacion(indice) {
+
+            indiceSeleccionado = Number(indice);
+
+            const cotizacion =
+                cotizaciones[indiceSeleccionado];
+
+            if (!cotizacion) {
+                return;
+            }
+
+            document.getElementById(
+                "detalleTelefono"
+            ).textContent = cotizacion.telefono || "";
+
+            document.getElementById(
+                "detalleServicio"
+            ).textContent = cotizacion.servicio || "";
+
+            document.getElementById(
+                "detalleTamano"
+            ).textContent = cotizacion.tamano || "";
+
+            document.getElementById(
+                "detalleEstado"
+            ).textContent = estaCotizada(cotizacion)
+                ? "Cotizada"
+                : "Pendiente";
+
+            document.getElementById(
+                "detalleTexto"
+            ).textContent = cotizacion.detalles ||
+                "Sin detalles adicionales.";
+
+            const imagen = document.getElementById(
+                "imagenCotizacion"
+            );
+
+            if (cotizacion.imagenDiseno) {
+                imagen.src = cotizacion.imagenDiseno;
+                imagen.style.display = "block";
+            } else {
+                imagen.removeAttribute("src");
+                imagen.style.display = "none";
+            }
+
+            precioCotizacion.value = estaCotizada(cotizacion)
+                ? cotizacion.precioCotizado
+                : "";
+
+            fondoCotizacion.style.display = "flex";
+        }
+
+        // =========================================
+        // GUARDAR PRECIO
+        // =========================================
+
+        guardarCotizacion.addEventListener(
+            "click",
+            function() {
+
+                if (indiceSeleccionado === null) {
+                    return;
+                }
+
+                const precio = Number(
+                    precioCotizacion.value
+                );
+
+                if (
+                    precioCotizacion.value.trim() === "" ||
+                    !Number.isFinite(precio) ||
+                    precio <= 0
+                ) {
+                    alert("Escribe un precio válido.");
+                    return;
+                }
+
+                cargarDatos();
+
+                const cotizacion =
+                    cotizaciones[indiceSeleccionado];
+
+                if (!cotizacion) {
+                    alert("No se encontró la cotización.");
+                    return;
+                }
+
+                const actualizadas = cotizaciones.slice();
+
+                actualizadas[indiceSeleccionado] = {
+                    ...cotizacion,
+                    precioCotizado: precio,
+                    estado: "Cotizada"
+                };
+
+                if (!guardarDatos(actualizadas)) {
+                    return;
+                }
+
+                alert("Cotización guardada correctamente.");
+
+                cerrarVentana();
+                mostrarCotizaciones();
+            }
+        );
+
+        // =========================================
+        // ELIMINAR UNA COTIZACIÓN
+        // =========================================
+
+        function eliminarCotizacion(indice) {
+
+            cargarDatos();
+
+            const cotizacion = cotizaciones[indice];
+
+            if (!cotizacion) {
+                alert("No se encontró la cotización.");
+                return;
+            }
+
+            if (tieneCitaRegistrada(cotizacion)) {
+                alert(
+                    "No puedes eliminar esta cotización porque tiene una cita registrada."
+                );
+                return;
+            }
+
+            const confirmar = confirm(
+                "¿Seguro que deseas eliminar esta cotización? Esta acción no se puede deshacer."
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            const actualizadas = cotizaciones.filter(
+                function(item, posicion) {
+                    return posicion !== indice;
+                }
+            );
+
+            if (!guardarDatos(actualizadas)) {
+                return;
+            }
+
+            cerrarVentana();
+            mostrarCotizaciones();
+        }
+
+        // =========================================
+        // ELIMINAR TODAS LAS PENDIENTES
+        // =========================================
+
+        eliminarPendientes.addEventListener(
+            "click",
+            function() {
+
+                cargarDatos();
+
+                const pendientesEliminables =
+                    cotizaciones.filter(function(cotizacion) {
+                        return !estaCotizada(cotizacion) &&
+                            !tieneCitaRegistrada(cotizacion);
+                    });
+
+                if (pendientesEliminables.length === 0) {
+                    alert(
+                        "No hay cotizaciones pendientes que se puedan eliminar."
+                    );
+                    return;
+                }
+
+                const confirmar = confirm(
+                    "¿Deseas eliminar " +
+                    pendientesEliminables.length +
+                    " cotización(es) pendiente(s)? Esta acción no se puede deshacer."
+                );
+
+                if (!confirmar) {
+                    return;
+                }
+
+                const actualizadas = cotizaciones.filter(
+                    function(cotizacion) {
+                        return estaCotizada(cotizacion) ||
+                            tieneCitaRegistrada(cotizacion);
+                    }
+                );
+
+                if (!guardarDatos(actualizadas)) {
+                    return;
+                }
+
+                cerrarVentana();
+                mostrarCotizaciones();
+
+                alert(
+                    "Se eliminaron las cotizaciones pendientes seleccionadas."
+                );
+            }
+        );
+
+        // =========================================
+        // CERRAR VENTANA
+        // =========================================
+
+        function cerrarVentana() {
+            fondoCotizacion.style.display = "none";
+            indiceSeleccionado = null;
+        }
+
+        cerrarCotizacion.addEventListener(
+            "click",
+            cerrarVentana
+        );
+
+        fondoCotizacion.addEventListener(
+            "click",
+            function(evento) {
+                if (evento.target === fondoCotizacion) {
+                    cerrarVentana();
+                }
+            }
+        );
+
+        // =========================================
+        // INICIAR
+        // =========================================
+
+        mostrarCotizaciones();
+
+    </script>
+</body>
+</html>

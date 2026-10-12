@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Horarios - GAB-NAILS</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body class="pagina-admin">
+
+    <header>
+
+        <img src="imagenes/logo.png"
+             alt="Logo de GAB-NAILS">
+
+        <h2>GAB-NAILS</h2>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="administrador.html">
+                        Administración
+                    </a>
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        Cerrar sesión
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+
+    <main class="contenido-horarios">
+
+        <section class="titulo-horarios">
+
+            <h1>Horarios disponibles</h1>
+
+            <p>
+                Agrega los días y horas disponibles
+                para recibir citas.
+            </p>
+
+        </section>
+
+
+        <!-- AGREGAR HORARIO -->
+
+        <section class="caja-horario">
+
+            <h2>Agregar disponibilidad</h2>
+
+            <form>
+
+                <div class="campo-horario">
+
+                    <label for="fecha">
+                        Fecha
+                    </label>
+
+                    <input type="date"
+                           id="fecha"
+                           name="fecha"
+                           required>
+
+                </div>
+
+
+                <div class="campo-horario">
+
+                    <label for="hora">
+                        Hora
+                    </label>
+
+                    <input type="time"
+                           id="hora"
+                           name="hora"
+                           required>
+
+                </div>
+
+
+                <button type="submit">
+                    + Agregar horario
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- HORARIOS REGISTRADOS -->
+
+        <section class="lista-horarios">
+
+            <h2>Horarios registrados</h2>
+
+            <div class="tabla-horarios">
+
+                <div class="fila-horario encabezado-horario">
+
+                    <span>Fecha</span>
+                    <span>Hora</span>
+                    <span>Estado</span>
+                    <span>Acción</span>
+
+                </div>
+
+
+                <div class="fila-horario">
+
+                    <span>03/10/2026</span>
+
+                    <span>4:00 PM</span>
+
+                    <span class="estado-disponible">
+                        Disponible
+                    </span>
+
+                    <button class="boton-eliminar">
+                        Eliminar
+                    </button>
+
+                </div>
+
+
+                <div class="fila-horario">
+
+                    <span>03/10/2026</span>
+
+                    <span>5:30 PM</span>
+
+                    <span class="estado-disponible">
+                        Disponible
+                    </span>
+
+                    <button class="boton-eliminar">
+                        Eliminar
+                    </button>
+
+                </div>
+
+
+                <div class="fila-horario">
+
+                    <span>04/10/2026</span>
+
+                    <span>11:00 AM</span>
+
+                    <span class="estado-ocupado">
+                        Ocupado
+                    </span>
+
+                    <span class="sin-accion">
+                        Reservado
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 GAB-NAILS. Administración.
+        </p>
+
+    </footer>
+
+</body>
+<script>
+
+    const formulario = document.querySelector(".caja-horario form");
+    const tabla = document.querySelector(".tabla-horarios");
+
+    // Recuperar horarios guardados
+    let horarios = JSON.parse(localStorage.getItem("horariosGabNails")) || [];
+
+
+    // MOSTRAR HORARIOS
+    function mostrarHorarios() {
+
+        // Eliminar las filas anteriores
+        const filas = tabla.querySelectorAll(
+            ".fila-horario:not(.encabezado-horario)"
+        );
+
+        filas.forEach(function(fila) {
+            fila.remove();
+        });
+
+
+        // Mostrar horarios guardados
+        horarios.forEach(function(horario, indice) {
+
+            const nuevaFila = document.createElement("div");
+
+            nuevaFila.classList.add("fila-horario");
+
+
+            nuevaFila.innerHTML = `
+
+                <span>${horario.fechaMostrar}</span>
+
+                <span>${horario.horaMostrar}</span>
+
+                <span class="${
+                    horario.estado === "Disponible"
+                    ? "estado-disponible"
+                    : "estado-ocupado"
+                }">
+
+                    ${horario.estado}
+
+                </span>
+
+                ${
+                    horario.estado === "Disponible"
+
+                    ?
+
+                    `<button
+                        class="boton-eliminar"
+                        type="button"
+                        data-indice="${indice}">
+                        Eliminar
+                    </button>`
+
+                    :
+
+                    `<span class="sin-accion">
+                        Reservado
+                    </span>`
+                }
+
+            `;
+
+
+            tabla.appendChild(nuevaFila);
+
+        });
+
+    }
+
+
+    // AGREGAR HORARIO
+    formulario.addEventListener("submit", function(evento) {
+
+        evento.preventDefault();
+
+
+        const fecha =
+            document.getElementById("fecha").value;
+
+        const hora =
+            document.getElementById("hora").value;
+
+
+        if (fecha === "" || hora === "") {
+
+            alert("Selecciona una fecha y una hora.");
+
+            return;
+
+        }
+
+
+        // Evitar horario repetido
+        const repetido = horarios.some(function(horarioGuardado) {
+
+            return horarioGuardado.fecha === fecha &&
+                   horarioGuardado.hora === hora;
+
+        });
+
+
+        if (repetido) {
+
+            alert("Ese horario ya fue agregado.");
+
+            return;
+
+        }
+
+
+        // FORMATO DE FECHA
+        const partesFecha = fecha.split("-");
+
+        const fechaMostrar =
+            partesFecha[2] + "/" +
+            partesFecha[1] + "/" +
+            partesFecha[0];
+
+
+        // FORMATO DE HORA
+        const partesHora = hora.split(":");
+
+        let horas = parseInt(partesHora[0]);
+
+        const minutos = partesHora[1];
+
+        let periodo = "AM";
+
+
+        if (horas >= 12) {
+            periodo = "PM";
+        }
+
+
+        if (horas > 12) {
+            horas = horas - 12;
+        }
+
+
+        if (horas === 0) {
+            horas = 12;
+        }
+
+
+        const horaMostrar =
+            horas + ":" +
+            minutos + " " +
+            periodo;
+
+
+        // CREAR HORARIO
+        const nuevoHorario = {
+
+            fecha: fecha,
+
+            hora: hora,
+
+            fechaMostrar: fechaMostrar,
+
+            horaMostrar: horaMostrar,
+
+            estado: "Disponible"
+
+        };
+
+
+        // GUARDAR
+        horarios.push(nuevoHorario);
+
+
+        localStorage.setItem(
+            "horariosGabNails",
+            JSON.stringify(horarios)
+        );
+
+
+        formulario.reset();
+
+
+        mostrarHorarios();
+
+
+        alert("Horario agregado correctamente.");
+
+    });
+
+
+    // ELIMINAR HORARIO
+    tabla.addEventListener("click", function(evento) {
+
+        if (
+            evento.target.classList.contains(
+                "boton-eliminar"
+            )
+        ) {
+
+            const indice =
+                evento.target.dataset.indice;
+
+
+            const confirmar =
+                confirm(
+                    "¿Deseas eliminar este horario?"
+                );
+
+
+            if (confirmar) {
+
+                horarios.splice(indice, 1);
+
+
+                localStorage.setItem(
+                    "horariosGabNails",
+                    JSON.stringify(horarios)
+                );
+
+
+                mostrarHorarios();
+
+            }
+
+        }
+
+    });
+
+
+    // Mostrar al abrir la página
+    mostrarHorarios();
+
+</script>
+
+</html>
